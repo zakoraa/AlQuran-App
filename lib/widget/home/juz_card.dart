@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../theme/color.dart';
 
 class JuzCard extends StatelessWidget {
@@ -10,7 +9,7 @@ class JuzCard extends StatelessWidget {
     return Expanded(
       flex: 1,
       child: Container(
-        height: 230,
+        height: 190,
         width: 100,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(40),
@@ -28,14 +27,20 @@ class JuzCard extends StatelessWidget {
                   Color(0xFFA1C5F6),
                 ])),
         child: Padding(
-          padding: const EdgeInsets.only(left: 20),
+          padding: const EdgeInsets.only(left: 20, bottom: 20),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Image.asset(
-                "assets/al_quran_2.png",
-                width: 100,
+              Align(
+                alignment: Alignment.topRight,
+                child: Container(
+                  transform: Matrix4.translationValues(0, -30, 0),
+                  child: Image.asset(
+                    "assets/al_quran_2.png",
+                    width: 100,
+                  ),
+                ),
               ),
               Row(
                 children: [

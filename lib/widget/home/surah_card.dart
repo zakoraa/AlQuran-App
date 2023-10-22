@@ -10,7 +10,7 @@ class SurahCard extends StatelessWidget {
     return Expanded(
       flex: 1,
       child: Container(
-        height: 200,
+        height: 190,
         width: 100,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(40),
@@ -26,14 +26,20 @@ class SurahCard extends StatelessWidget {
                 end: Alignment.topRight,
                 colors: [Color(0xFFDE88AD), Color(0xFFE2A8CB)])),
         child: Padding(
-          padding: const EdgeInsets.only(left: 20),
+          padding: const EdgeInsets.only(left: 20, bottom: 20),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Image.asset(
-                "assets/al_quran.png",
-                width: 100,
+              Container(
+                transform: Matrix4.translationValues(0, -25, 0),
+                child: Align(
+                  alignment: Alignment.topRight,
+                  child: Image.asset(
+                    "assets/al_quran.png",
+                    width: 140,
+                  ),
+                ),
               ),
               Row(
                 children: [
@@ -42,7 +48,7 @@ class SurahCard extends StatelessWidget {
                     style: Theme.of(context)
                         .textTheme
                         .bodyLarge!
-                        .copyWith(fontSize: 25, color: Colors.white),
+                        .copyWith(fontSize: 30, color: Colors.white),
                   ),
                   const SizedBox(
                     width: 10,
@@ -50,7 +56,7 @@ class SurahCard extends StatelessWidget {
                   const Icon(
                     Icons.arrow_circle_right_outlined,
                     color: Colors.white,
-                    size: 28,
+                    size: 30,
                   )
                 ],
               )

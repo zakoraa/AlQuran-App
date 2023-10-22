@@ -25,12 +25,19 @@ class HomeView extends StatelessWidget {
                 ))))
         : Scaffold(
             appBar: AppBar(
-              title: Center(
-                  child: Text(
+              title: Text(
                 "AL QUR'AN",
                 style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                     color: CustomColor.textPrimaryColor, fontSize: 25),
-              )),
+              ),
+              centerTitle: true,
+              leading: Padding(
+                padding: const EdgeInsets.only(left: 10.0),
+                child: Image.asset(
+                  "assets/logo_alquran.png",
+                ),
+              ),
+              leadingWidth: 70,
             ),
             body: SizedBox(
               width: Get.width,
