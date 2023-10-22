@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 
 import '../../view/search.dart';
 
-class SearchBarHome extends StatelessWidget {
-  const SearchBarHome({super.key});
+class CustomSearchBar extends StatelessWidget {
+  const CustomSearchBar({super.key});
 
   @override
   Widget build(BuildContext context) {

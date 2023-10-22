@@ -46,7 +46,7 @@ class SearchCard extends StatelessWidget {
                     style: Theme.of(context)
                         .textTheme
                         .bodyLarge!
-                        .copyWith(fontSize: 30, color: Colors.white),
+                        .copyWith(fontSize: 25, color: Colors.white),
                   ),
                   const SizedBox(
                     width: 10,
@@ -54,7 +54,7 @@ class SearchCard extends StatelessWidget {
                   const Icon(
                     Icons.search,
                     color: Colors.white,
-                    size: 35,
+                    size: 30,
                   )
                 ],
               ),

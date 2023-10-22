@@ -1,3 +1,4 @@
+import 'package:al_quran/view/surah.dart';
 import 'package:al_quran/widget/home/header.dart';
 import 'package:al_quran/widget/home/juz_card.dart';
 import 'package:al_quran/widget/home/search_card.dart';
@@ -29,7 +30,7 @@ class HomeView extends StatelessWidget {
               title: Text(
                 "AL QUR'AN",
                 style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                    color: CustomColor.textPrimaryColor, fontSize: 25),
+                    color: CustomColor.textPrimaryColor, fontSize: 20),
               ),
               centerTitle: true,
               leading: Padding(
@@ -52,7 +53,7 @@ class HomeView extends StatelessWidget {
                     child: Column(
                       children: [
                         const SizedBox(
-                          height: 20,
+                          height: 10,
                         ),
                         Padding(
                             padding: const EdgeInsets.all(30),
@@ -64,15 +65,21 @@ class HomeView extends StatelessWidget {
                         const SizedBox(
                           height: 50,
                         ),
-                        const Row(
+                        Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            JuzCard(),
-                            SizedBox(
+                            const JuzCard(),
+                            const SizedBox(
                               width: 10,
                             ),
-                            SurahCard(),
+                            Expanded(
+                              flex: 1,
+                              child: GestureDetector(
+                                  onTap: () => Get.to(() => const SurahView(),
+                                      transition: Transition.rightToLeft),
+                                  child: const SurahCard()),
+                            ),
                           ],
                         ),
                         const SizedBox(

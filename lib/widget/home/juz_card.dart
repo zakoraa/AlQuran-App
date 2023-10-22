@@ -9,7 +9,7 @@ class JuzCard extends StatelessWidget {
     return Expanded(
       flex: 1,
       child: Container(
-        height: 190,
+        height: 180,
         width: 100,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(40),
@@ -49,7 +49,7 @@ class JuzCard extends StatelessWidget {
                     style: Theme.of(context)
                         .textTheme
                         .bodyLarge!
-                        .copyWith(fontSize: 30, color: Colors.white),
+                        .copyWith(fontSize: 25, color: Colors.white),
                   ),
                   const SizedBox(
                     width: 10,
@@ -57,7 +57,7 @@ class JuzCard extends StatelessWidget {
                   const Icon(
                     Icons.arrow_circle_right_outlined,
                     color: Colors.white,
-                    size: 30,
+                    size: 25,
                   )
                 ],
               )

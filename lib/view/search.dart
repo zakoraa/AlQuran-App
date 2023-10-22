@@ -11,7 +11,7 @@ class SearchView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SearchViewController searchController = Get.put(SearchViewController());
-    List<AlQuran> items = searchController.searchResults;
+    List<AlQuran> items = searchController.searchResults!;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(

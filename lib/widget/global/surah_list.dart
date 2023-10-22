@@ -16,23 +16,28 @@ class SurahList extends StatelessWidget {
         Row(
           children: [
             Container(
-              padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-              height: 80,
+              padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+              height: 100,
               child: Align(
                 alignment: Alignment.centerLeft,
-                child: Container(
-                  height: 30,
-                  width: 30,
-                  decoration: const BoxDecoration(
-                      shape: BoxShape.circle, color: CustomColor.primaryColor),
+                child: SizedBox(
+                  height: 40,
+                  width: 40,
                   child: Center(
-                    child: Text(
-                      "${items[index].surah}",
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyLarge!
-                          .copyWith(color: Colors.white, fontSize: 14),
-                    ),
+                    child: Stack(children: [
+                      Image.asset("assets/bg_number.png"),
+                      Center(
+                        child: Text(
+                          "${items[index].surah}",
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyLarge!
+                              .copyWith(
+                                  color: CustomColor.secondaryVariantColor,
+                                  fontSize: 10),
+                        ),
+                      ),
+                    ]),
                   ),
                 ),
               ),
@@ -63,7 +68,7 @@ class SurahList extends StatelessWidget {
                   child: Text(
                     items[index].titleSurahArabic,
                     style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                        color: CustomColor.primaryColor,
+                        color: CustomColor.secondaryVariantColor,
                         fontFamily: "Arab",
                         fontSize: 25),
                   )),
@@ -71,11 +76,11 @@ class SurahList extends StatelessWidget {
           ],
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          padding: const EdgeInsets.symmetric(horizontal: 0.0),
           child: Container(
             height: 1,
             width: Get.width,
-            color: const Color.fromARGB(255, 212, 212, 212),
+            color: const Color.fromARGB(255, 142, 180, 186),
           ),
         )
       ],

@@ -5,29 +5,32 @@ import '../home/home_controller.dart';
 
 class SearchViewController extends GetxController {
   HomeController homeController = Get.find<HomeController>();
-  RxList<AlQuran> searchResults = RxList.empty();
+  RxList<AlQuran>? searchResults;
   TextEditingController searchText = TextEditingController();
 
   void onSearch(String text) {
     searchText.text = text;
-    if (searchText.text != "") {
-      searchResults.value = homeController.dataList
-          .where((element) => element.titleSurahIndonesia
-              .split("-")
-              .join(" ")
-              .toLowerCase()
-              .contains(searchText.text.toLowerCase()))
-          .toList()
-          .obs;
-    } else {
-      searchResults.value = List.empty();
-    }
+    searchResults!.value = homeController.dataList
+        .where((element) => element.titleSurahIndonesia
+            .split("-")
+            .join(" ")
+            .toLowerCase()
+            .contains(searchText.text.toLowerCase()))
+        .toList()
+        .obs;
     update();
   }
 
   void onClear() {
-    searchText.text = "";
-    searchResults.clear();
+    searchText.clear();
+    searchResults!.value = RxList.from(homeController.dataList);
+    update();
+  }
+
+  @override
+  void onInit() {
+    searchResults = RxList.from(homeController.dataList);
+    super.onInit();
     update();
   }
 }
