@@ -1,5 +1,6 @@
 import 'package:al_quran/widget/home/header.dart';
 import 'package:al_quran/widget/home/juz_card.dart';
+import 'package:al_quran/widget/home/search_card.dart';
 import 'package:al_quran/widget/home/surah_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -71,9 +72,13 @@ class HomeView extends StatelessWidget {
                             SizedBox(
                               width: 10,
                             ),
-                            SurahCard()
+                            SurahCard(),
                           ],
                         ),
+                        const SizedBox(
+                          height: 25,
+                        ),
+                        const SearchCard(),
                         const SizedBox(
                           height: 50,
                         )

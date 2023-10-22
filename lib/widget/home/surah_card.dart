@@ -48,7 +48,7 @@ class SurahCard extends StatelessWidget {
                     style: Theme.of(context)
                         .textTheme
                         .bodyLarge!
-                        .copyWith(fontSize: 30, color: Colors.white),
+                        .copyWith(fontSize: 28, color: Colors.white),
                   ),
                   const SizedBox(
                     width: 10,
