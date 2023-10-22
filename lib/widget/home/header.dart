@@ -10,69 +10,56 @@ class HomeHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(top: 20, left: 20, bottom: 20),
-      margin: const EdgeInsets.symmetric(horizontal: 10),
-      height: 300,
+      height: 200,
+      padding: const EdgeInsets.only(top: 20, bottom: 20, left: 30),
       width: Get.width,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        gradient: const LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              Color(0xFF76EBAC),
-              CustomColor.primaryColor,
-            ]),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+          borderRadius: BorderRadius.circular(40),
+          boxShadow: const [
+            BoxShadow(
+                blurRadius: 2, offset: Offset(0, 3), color: Color(0xFF296452))
+          ],
+          gradient: const LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.topRight,
+              colors: [Color(0xFF34B3AA), CustomColor.primaryColor])),
+      child: Row(
         children: [
-          Text(
-            "Assalamualaikum",
-            style: Theme.of(context)
-                .textTheme
-                .bodyLarge!
-                .copyWith(color: Colors.white, fontSize: 25),
-          ),
-          Text(
-            "Temen-temen",
-            style: Theme.of(context)
-                .textTheme
-                .bodyLarge!
-                .copyWith(color: Colors.white, fontSize: 25),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Expanded(
-                flex: 3,
-                child: Align(
-                  alignment: Alignment.bottomLeft,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Yuk Baca",
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodySmall!
-                            .copyWith(color: Colors.white, fontSize: 20),
-                      ),
-                      Text(
-                        "Al-Quran!",
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodySmall!
-                            .copyWith(color: Colors.white, fontSize: 28),
-                      ),
-                    ],
+          Expanded(
+            flex: 3,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Assalamualaikum",
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyMedium!
+                      .copyWith(color: Colors.white, fontSize: 16),
+                ),
+                Text(
+                  "Temen-temen",
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyMedium!
+                      .copyWith(color: Colors.white, fontSize: 16),
+                ),
+                Expanded(
+                  child: Align(
+                    alignment: Alignment.bottomLeft,
+                    child: Text(
+                      "Yuk Baca \nAl-Qur'an!",
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodySmall!
+                          .copyWith(color: Colors.white, fontSize: 25),
+                    ),
                   ),
                 ),
-              ),
-              Expanded(
-                  flex: 4, child: Lottie.asset("assets/header_lottie.json")),
-            ],
+              ],
+            ),
           ),
+          Expanded(flex: 3, child: Lottie.asset("assets/header_lottie.json"))
         ],
       ),
     );
