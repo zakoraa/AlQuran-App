@@ -5,5 +5,5 @@ class CustomColor {
   static const secondaryColor = Color(0xff008e8a);
   static const textPrimaryColor = Color(0xFF1E474D);
   static const textsecondaryColor = Color.fromARGB(255, 133, 133, 133);
-  static const shadowColor = Color.fromARGB(255, 167, 166, 166);
+  static const shadowColor = Color.fromARGB(255, 199, 199, 199);
 }

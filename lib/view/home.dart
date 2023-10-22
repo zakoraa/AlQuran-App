@@ -1,4 +1,6 @@
 import 'package:al_quran/widget/home/header.dart';
+import 'package:al_quran/widget/home/juz_card.dart';
+import 'package:al_quran/widget/home/surah_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../theme/color.dart';
@@ -54,131 +56,19 @@ class HomeView extends StatelessWidget {
                         const SizedBox(
                           height: 50,
                         ),
-                        Row(
+                        const Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Expanded(
-                              flex: 1,
-                              child: Container(
-                                height: 250,
-                                width: 100,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(40),
-                                    boxShadow: const [
-                                      BoxShadow(
-                                          blurRadius: 2,
-                                          offset: Offset(0, 3),
-                                          color: CustomColor.shadowColor)
-                                    ],
-                                    gradient: const LinearGradient(
-                                        begin: Alignment.topLeft,
-                                        end: Alignment.bottomRight,
-                                        colors: [
-                                          Color(0xFF87E9DA),
-                                          Color(0xFFA1C5F6),
-                                        ])),
-                                child: Padding(
-                                  padding: const EdgeInsets.only(left: 20),
-                                  child: Column(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Image.asset(
-                                        "assets/al_quran_2.png",
-                                        width: 100,
-                                      ),
-                                      Row(
-                                        children: [
-                                          Text(
-                                            "Juz",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyLarge!
-                                                .copyWith(
-                                                    fontSize: 30,
-                                                    color: Colors.white),
-                                          ),
-                                          const SizedBox(
-                                            width: 10,
-                                          ),
-                                          const Icon(
-                                            Icons.arrow_circle_right_outlined,
-                                            color: Colors.white,
-                                            size: 30,
-                                          )
-                                        ],
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ),
+                            JuzCard(),
+                            SizedBox(
+                              width: 10,
                             ),
-                            const SizedBox(
-                              width: 20,
-                            ),
-                            Expanded(
-                              flex: 1,
-                              child: Container(
-                                height: 200,
-                                width: 100,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(40),
-                                    boxShadow: const [
-                                      BoxShadow(
-                                          blurRadius: 2,
-                                          spreadRadius: 1,
-                                          offset: Offset(0, 3),
-                                          color: CustomColor.shadowColor)
-                                    ],
-                                    gradient: const LinearGradient(
-                                        begin: Alignment.bottomLeft,
-                                        end: Alignment.topRight,
-                                        colors: [
-                                          Color(0xFFDE88AD),
-                                          Color(0xFFE2A8CB)
-                                        ])),
-                                child: Padding(
-                                  padding: const EdgeInsets.only(left: 20),
-                                  child: Column(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Image.asset(
-                                        "assets/al_quran.png",
-                                        width: 100,
-                                      ),
-                                      Row(
-                                        children: [
-                                          Text(
-                                            "Surah",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyLarge!
-                                                .copyWith(
-                                                    fontSize: 30,
-                                                    color: Colors.white),
-                                          ),
-                                          const SizedBox(
-                                            width: 10,
-                                          ),
-                                          const Icon(
-                                            Icons.arrow_circle_right_outlined,
-                                            color: Colors.white,
-                                            size: 30,
-                                          )
-                                        ],
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            )
+                            SurahCard()
                           ],
+                        ),
+                        const SizedBox(
+                          height: 50,
                         )
                       ],
                     ),

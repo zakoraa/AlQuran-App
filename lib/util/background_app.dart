@@ -17,7 +17,6 @@ class BackgroundApp extends StatelessWidget {
               end: Alignment.bottomCenter,
               colors: [
             CustomColor.primaryColor,
-            Color.fromARGB(255, 102, 247, 184),
             Color.fromARGB(255, 180, 255, 223),
             Colors.white,
             Colors.white,
