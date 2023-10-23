@@ -4,7 +4,7 @@ import 'package:al_quran/widget/global/surah_list.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../model/al_quran_model.dart';
+import '../model/surah_al_quran_model.dart';
 import '../viewModel/search/search_controller.dart';
 
 class SurahView extends StatelessWidget {

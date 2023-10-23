@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 
-import '../../model/al_quran_model.dart';
-import '../alQuran/al_quran_controller.dart';
+import '../../model/surah_al_quran_model.dart';
+import '../surahAlQuran/surah_al_quran_controller.dart';
 
 
 class HomeController extends GetxController {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../model/al_quran_model.dart';
+import '../model/surah_al_quran_model.dart';
 import '../theme/color.dart';
 import '../viewModel/search/search_controller.dart';
 import '../widget/global/surah_list.dart';

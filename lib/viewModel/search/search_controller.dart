@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../model/al_quran_model.dart';
+import '../../model/surah_al_quran_model.dart';
 import '../home/home_controller.dart';
 
 class SearchViewController extends GetxController {
