@@ -8,9 +8,9 @@ import '../../repository/al_quran_service.dart';
 class AlQuranController extends GetxController {
   var data = List<AlQuran>.empty().obs;
 
-  Future<List<AlQuran>> getData() async {
+  Future<List<AlQuran>> getSurah() async {
     try {
-      final data = await AlQuranService().getData();
+      final data = await AlQuranService().getSurah();
 
       List dataList = [];
       for (dynamic i in data['data']) {

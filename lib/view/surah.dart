@@ -45,14 +45,6 @@ class SurahView extends StatelessWidget {
                     const SizedBox(
                       height: 20,
                     ),
-                    Text(
-                      "Al-Qur'an",
-                      style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                          color: CustomColor.textPrimaryColor, fontSize: 30),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
                     Image.asset(
                       "assets/logo_alquran.png",
                       width: 200,

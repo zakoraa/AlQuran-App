@@ -1,3 +1,4 @@
+import 'package:al_quran/util/loading.dart';
 import 'package:al_quran/view/surah.dart';
 import 'package:al_quran/widget/home/header.dart';
 import 'package:al_quran/widget/home/juz_card.dart';
@@ -17,14 +18,7 @@ class HomeView extends StatelessWidget {
     HomeController homeController = Get.put(HomeController());
 
     return Obx(() => homeController.isLoading.value
-        ? Scaffold(
-            body: SizedBox(
-                height: Get.height,
-                width: Get.width,
-                child: const Center(
-                    child: CircularProgressIndicator(
-                  color: CustomColor.secondaryColor,
-                ))))
+        ? const Scaffold(body: LoadingUtil())
         : Scaffold(
             appBar: AppBar(
               title: Text(

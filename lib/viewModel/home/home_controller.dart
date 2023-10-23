@@ -8,7 +8,7 @@ class HomeController extends GetxController {
   RxBool isLoading = true.obs;
 
   Future<void> getData() async {
-    final data = await AlQuranController().getData();
+    final data = await AlQuranController().getSurah();
     if (data.isNotEmpty) {
       dataList.value = List.from(data);
     }
