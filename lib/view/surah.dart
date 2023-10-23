@@ -37,7 +37,7 @@ class SurahView extends StatelessWidget {
                         onTap: () => Get.back(),
                         child: const Icon(
                           Icons.arrow_back_ios_new_rounded,
-                          size: 35,
+                          size: 30,
                           color: CustomColor.textPrimaryColor,
                         ),
                       ),
