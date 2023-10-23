@@ -32,7 +32,7 @@ class SurahList extends StatelessWidget {
                         Image.asset("assets/bg_number.png"),
                         Center(
                           child: Text(
-                            "${items[index].surahNumber}",
+                            "${items[index].surahId}",
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyLarge!

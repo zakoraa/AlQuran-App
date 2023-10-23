@@ -1,17 +1,16 @@
-class SurahAlQuran {
-  int surahNumber;
+import 'package:al_quran/model/al_quran_model.dart';
+
+class SurahAlQuran extends AlQuran {
   int numberOfAyat;
-  String titleSurahArabic;
-  String titleSurahIndonesia;
   String placeOfRevelation;
   String interpretation;
   String recitation;
 
   SurahAlQuran({
-    required this.surahNumber,
+    required super.surahId,
+    required super.titleSurahArabic,
+    required super.titleSurahIndonesia,
     required this.numberOfAyat,
-    required this.titleSurahArabic,
-    required this.titleSurahIndonesia,
     required this.placeOfRevelation,
     required this.interpretation,
     required this.recitation,
@@ -19,10 +18,10 @@ class SurahAlQuran {
 
   factory SurahAlQuran.fromJson(Map<String, dynamic> json) {
     return SurahAlQuran(
-        surahNumber: json["number"],
-        numberOfAyat: json["ayahCount"],
+        surahId: json["number"],
         titleSurahArabic: json["asma"]["ar"]["short"],
         titleSurahIndonesia: json["asma"]["id"]["short"],
+        numberOfAyat: json["ayahCount"],
         placeOfRevelation: json["type"]["id"],
         interpretation: json["tafsir"]["id"],
         recitation: json["recitation"]["full"]);
@@ -34,13 +33,15 @@ class SurahAlQuran {
 
   @override
   String toString() {
-    return 'SurahAlQuran{'
-        'surah: $surahNumber, '
-        'numberOfAyat: $numberOfAyat, '
-        'titleSurahArabic: $titleSurahArabic, '
-        'titleSurahIndonesia: $titleSurahIndonesia, '
-        'placeOfRevelation: $placeOfRevelation, '
-        'interpretation: $interpretation, '
-        'recitation: $recitation}';
+    return """SurahAlQuran
+      {
+        titleSurahArabic: $titleSurahArabic, 
+        titleSurahIndonesia: $titleSurahIndonesia, 
+        surah: $surahId, 
+        numberOfAyat: $numberOfAyat, 
+        placeOfRevelation: $placeOfRevelation, 
+        interpretation: $interpretation, 
+        recitation: $recitation
+      }""";
   }
 }

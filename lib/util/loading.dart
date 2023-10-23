@@ -8,16 +8,19 @@ class LoadingUtil extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: Get.height,
-      width: Get.width,
-      child: Stack(
-        children: [
-          const BackgroundApp(),
-          Center(
-            child: Lottie.asset("assets/loading.json", width: 300),
-          ),
-        ],
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      body: SizedBox(
+        height: Get.height,
+        width: Get.width,
+        child: Stack(
+          children: [
+            const BackgroundApp(),
+            Center(
+              child: Lottie.asset("assets/loading.json", width: 300),
+            ),
+          ],
+        ),
       ),
     );
   }

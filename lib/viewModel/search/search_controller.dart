@@ -10,7 +10,7 @@ class SearchViewController extends GetxController {
 
   void onSearch(String text) {
     searchText.text = text;
-    searchResults!.value = homeController.dataList
+    searchResults!.value = homeController.surahDataList
         .where((element) => element.titleSurahIndonesia
             .split("-")
             .join(" ")
@@ -23,13 +23,13 @@ class SearchViewController extends GetxController {
 
   void onClear() {
     searchText.clear();
-    searchResults!.value = RxList.from(homeController.dataList);
+    searchResults!.value = RxList.from(homeController.surahDataList);
     update();
   }
 
   @override
   void onInit() {
-    searchResults = RxList.from(homeController.dataList);
+    searchResults = RxList.from(homeController.surahDataList);
     super.onInit();
     update();
   }
