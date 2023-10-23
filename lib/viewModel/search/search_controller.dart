@@ -5,7 +5,7 @@ import '../home/home_controller.dart';
 
 class SearchViewController extends GetxController {
   HomeController homeController = Get.find<HomeController>();
-  RxList<AlQuran>? searchResults;
+  RxList<SurahAlQuran>? searchResults;
   TextEditingController searchText = TextEditingController();
 
   void onSearch(String text) {

@@ -12,7 +12,7 @@ class AyatList extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.only(top: 10),
+          padding: const EdgeInsets.only(top: 10, right: 10, left: 10),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -20,7 +20,7 @@ class AyatList extends StatelessWidget {
               Align(
                 alignment: Alignment.topCenter,
                 child: Container(
-                  margin: const EdgeInsets.only(right: 15, left: 10),
+                  margin: const EdgeInsets.only(right: 15),
                   height: 50,
                   width: 50,
                   child: Stack(

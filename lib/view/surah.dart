@@ -13,7 +13,7 @@ class SurahView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SearchViewController searchController = Get.put(SearchViewController());
-    List<AlQuran> items = searchController.searchResults!;
+    List<SurahAlQuran> items = searchController.searchResults!;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: const Color.fromARGB(255, 204, 254, 233),

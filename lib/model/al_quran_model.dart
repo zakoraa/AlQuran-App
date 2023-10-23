@@ -1,15 +1,15 @@
-class AlQuran {
-  int surah;
-  int ayat;
+class SurahAlQuran {
+  int surahNumber;
+  int numberOfAyat;
   String titleSurahArabic;
   String titleSurahIndonesia;
   String placeOfRevelation;
   String interpretation;
   String recitation;
 
-  AlQuran({
-    required this.surah,
-    required this.ayat,
+  SurahAlQuran({
+    required this.surahNumber,
+    required this.numberOfAyat,
     required this.titleSurahArabic,
     required this.titleSurahIndonesia,
     required this.placeOfRevelation,
@@ -17,10 +17,10 @@ class AlQuran {
     required this.recitation,
   });
 
-  factory AlQuran.fromJson(Map<String, dynamic> json) {
-    return AlQuran(
-        surah: json["number"],
-        ayat: json["ayahCount"],
+  factory SurahAlQuran.fromJson(Map<String, dynamic> json) {
+    return SurahAlQuran(
+        surahNumber: json["number"],
+        numberOfAyat: json["ayahCount"],
         titleSurahArabic: json["asma"]["ar"]["short"],
         titleSurahIndonesia: json["asma"]["id"]["short"],
         placeOfRevelation: json["type"]["id"],
@@ -28,15 +28,15 @@ class AlQuran {
         recitation: json["recitation"]["full"]);
   }
 
-  static List<AlQuran> alQuranFromSnapshot(List snapshot) {
-    return snapshot.map((data) => AlQuran.fromJson(data)).toList();
+  static List<SurahAlQuran> surahAlQuranFromSnapshot(List snapshot) {
+    return snapshot.map((data) => SurahAlQuran.fromJson(data)).toList();
   }
 
   @override
   String toString() {
-    return 'AlQuran{'
-        'surah: $surah, '
-        'ayat: $ayat, '
+    return 'SurahAlQuran{'
+        'surah: $surahNumber, '
+        'numberOfAyat: $numberOfAyat, '
         'titleSurahArabic: $titleSurahArabic, '
         'titleSurahIndonesia: $titleSurahIndonesia, '
         'placeOfRevelation: $placeOfRevelation, '

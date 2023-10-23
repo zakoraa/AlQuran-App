@@ -1,15 +1,14 @@
+import 'package:al_quran/model/al_quran_model.dart';
 import 'package:al_quran/view/surah_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../../model/al_quran_model.dart';
 import '../../theme/color.dart';
 
 class SurahList extends StatelessWidget {
   const SurahList({super.key, required this.index, required this.items});
 
   final int index;
-  final List<AlQuran> items;
+  final List<SurahAlQuran> items;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -33,7 +32,7 @@ class SurahList extends StatelessWidget {
                         Image.asset("assets/bg_number.png"),
                         Center(
                           child: Text(
-                            "${items[index].surah}",
+                            "${items[index].surahNumber}",
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyLarge!
@@ -60,7 +59,7 @@ class SurahList extends StatelessWidget {
                     height: 5,
                   ),
                   Text(
-                      "${items[index].placeOfRevelation}  •  ${items[index].ayat} Ayat",
+                      "${items[index].placeOfRevelation}  •  ${items[index].numberOfAyat} Ayat",
                       style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                           color: CustomColor.textsecondaryColor, fontSize: 12))
                 ],

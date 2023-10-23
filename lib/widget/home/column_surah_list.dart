@@ -10,7 +10,7 @@ class ColumnSurahList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     HomeController homeController = Get.find<HomeController>();
-    List<AlQuran> items = homeController.dataList;
+    List<SurahAlQuran> items = homeController.dataList;
     return Column(
         children: List.generate(
             items.length, (index) => SurahList(index: index, items: items)));

@@ -5,12 +5,12 @@ import 'package:get/get.dart';
 import '../../model/al_quran_model.dart';
 import '../../repository/al_quran_service.dart';
 
-class AlQuranController extends GetxController {
-  var data = List<AlQuran>.empty().obs;
+class SurahAlQuranController extends GetxController {
+  var data = List<SurahAlQuran>.empty().obs;
 
-  Future<List<AlQuran>> getSurah() async {
+  Future<List<SurahAlQuran>> getSurah() async {
     try {
-      final data = await AlQuranService().getSurah();
+      final data = await SurahAlQuranService().getSurah();
 
       List dataList = [];
       for (dynamic i in data['data']) {
@@ -19,7 +19,7 @@ class AlQuranController extends GetxController {
       if (data.isNotEmpty) {
         print("Get Data Success");
       }
-      return AlQuran.alQuranFromSnapshot(dataList);
+      return SurahAlQuran.surahAlQuranFromSnapshot(dataList);
     } catch (e) {
       print(e.toString());
       return [];
