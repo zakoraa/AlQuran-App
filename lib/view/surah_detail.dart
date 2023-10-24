@@ -38,7 +38,7 @@ class _SurahDetailViewState extends State<SurahDetailView> {
             appBar: AppBar(
               automaticallyImplyLeading: false,
               title: Text(
-                "Surah ${widget.surahName}",
+                widget.surahName,
                 style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                     color: CustomColor.textPrimaryColor, fontSize: 20),
               ),

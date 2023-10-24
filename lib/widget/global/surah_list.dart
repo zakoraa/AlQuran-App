@@ -17,7 +17,8 @@ class SurahList extends StatelessWidget {
           () => SurahDetailView(
               surahId: item.surahId, surahName: item.titleSurahIndonesia),
           transition: Transition.rightToLeft),
-      child: SizedBox(
+      child: Container(
+        color: Colors.transparent,
         width: Get.width,
         child: Column(
           children: [
