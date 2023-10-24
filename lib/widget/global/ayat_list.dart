@@ -1,13 +1,21 @@
+import 'package:al_quran/viewModel/surahDetail/surah_detail_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../model/ayat_al_quran_model.dart';
 import '../../theme/color.dart';
 
 class AyatList extends StatelessWidget {
-  const AyatList({super.key});
+  const AyatList({super.key, required this.index});
+
+  final int index;
 
   @override
   Widget build(BuildContext context) {
+    SurahDetailController surahDetailController =
+        Get.find<SurahDetailController>();
+    List<AyatAlQuran> dataList = surahDetailController.ayatDataList;
+    final data = dataList[index];
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -33,7 +41,7 @@ class AyatList extends StatelessWidget {
                       ),
                       Center(
                         child: Text(
-                          "114",
+                          "${data.ayatNumber}",
                           style: Theme.of(context)
                               .textTheme
                               .bodyLarge!
@@ -48,7 +56,7 @@ class AyatList extends StatelessWidget {
                 child: Align(
                   alignment: Alignment.centerRight,
                   child: Text(
-                    "الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِي الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِي",
+                    data.arabicAyat,
                     style: Theme.of(context)
                         .textTheme
                         .bodyMedium!
@@ -69,17 +77,17 @@ class AyatList extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Latinnya loresm ispus halllo bang ini latinnya",
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyMedium!
-                    .copyWith(color: CustomColor.secondaryColor, fontSize: 14),
+                data.latinAyat,
+                style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                    color: CustomColor.secondaryColor,
+                    fontSize: 16,
+                    fontFamily: "normal"),
               ),
               const SizedBox(
                 height: 5,
               ),
               Text(
-                "artinya loresm ispus halllo bang ini artinya",
+                data.ayatTranslation,
                 style: Theme.of(context)
                     .textTheme
                     .bodySmall!
