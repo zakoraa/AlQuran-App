@@ -1,6 +1,4 @@
-import 'package:al_quran/model/al_quran_model.dart';
-
-class AyatAlQuran extends AlQuran {
+class AyatAlQuran {
   int ayatNumber;
   String arabicAyat;
   String latinAyat;
@@ -8,9 +6,6 @@ class AyatAlQuran extends AlQuran {
   dynamic audio;
 
   AyatAlQuran({
-    required super.surahId,
-    required super.titleSurahIndonesia,
-    required super.titleSurahArabic,
     required this.ayatNumber,
     required this.arabicAyat,
     required this.latinAyat,
@@ -20,17 +15,14 @@ class AyatAlQuran extends AlQuran {
 
   factory AyatAlQuran.fromJson(Map<String, dynamic> json) {
     return AyatAlQuran(
-        surahId: json["number"],
-        titleSurahArabic: json["asma"]["ar"]["short"],
-        titleSurahIndonesia: json["asma"]["id"]["short"],
-        ayatNumber: json["ayahs"]["number"]["insurah"],
-        arabicAyat: json["ayahs"]["text"]["ar"],
-        latinAyat: json["ayahs"]["text"]["id"],
-        ayatTranslation: json["ayahs"]["translation"]["id"],
-        audio: json["ayahs"]["audio"]["url"]);
+        ayatNumber: json["number"]["insurah"],
+        arabicAyat: json["text"]["ar"],
+        latinAyat: json["text"]["read"]["id"],
+        ayatTranslation: json["translation"]["id"],
+        audio: json["audio"]["url"]);
   }
 
-  static List<AyatAlQuran> ayatAlQuranFromSnapShot(List snapshot) {
+  static List<AyatAlQuran> ayatAlQuranFromSnapshot(List snapshot) {
     return snapshot.map((data) => AyatAlQuran.fromJson(data)).toList();
   }
 
@@ -38,9 +30,7 @@ class AyatAlQuran extends AlQuran {
   String toString() {
     return """Ayat
         {
-          surahId: $surahId,
-          titleSurahArabic: $titleSurahArabic, 
-          titleSurahIndonesia: $titleSurahIndonesia, 
+          ayatNumber : $ayatNumber,
           arabicAyat: $arabicAyat, 
           latinAyat: $latinAyat, 
           ayatTranslation: $ayatTranslation, 

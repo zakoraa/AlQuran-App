@@ -16,7 +16,6 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     HomeController homeController = Get.put(HomeController());
-
     return Obx(() => homeController.isLoading.value
         ? const Scaffold(body: LoadingUtil())
         : Scaffold(

@@ -6,21 +6,29 @@ import 'package:get/get.dart';
 import '../../repository/ayat_al_quran_service.dart';
 
 class AyatAlQuranController extends GetxController {
-  Future<List<AyatAlQuran>> getAyatAlQuran(int surahId, int ayatNumber) async {
+  Future<dynamic> getAyatAlQuran(int surahId) async {
     try {
-      final data = await AyatAlQuranService().getAyat(surahId, ayatNumber);
+      final data = await AyatAlQuranService().getAyat(surahId);
 
       List<Map<String, dynamic>> dataList = [];
-      for (var i in data["data"]) {
+      for (var i in data["data"]["ayahs"]) {
         dataList.add(i);
       }
       if (dataList.isNotEmpty) {
         print("Get Ayat Data Success");
       }
-      return AyatAlQuran.ayatAlQuranFromSnapShot(dataList);
+
+      return AyatAlQuran.ayatAlQuranFromSnapshot(dataList);
     } catch (e) {
       print(e.toString());
       return [];
     }
   }
 }
+
+     // print("""
+      //   ayatNumber: ${data["data"]["ayahs"][0]["number"]["insurah"]},
+      //   arabicAyat: ${data["data"]["ayahs"][0]["text"]["ar"]},
+      //   latinAyat: ${data["data"]["ayahs"][0]["text"]["read"]["id"]},
+      //   ayatTranslation: ${data["data"]["ayahs"][0]["translation"]["id"]},
+      //   audio: ${data["data"]["ayahs"][0]["audio"]["url"]}""");

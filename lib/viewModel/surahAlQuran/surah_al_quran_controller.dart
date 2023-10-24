@@ -11,12 +11,13 @@ class SurahAlQuranController extends GetxController {
       final data = await SurahAlQuranService().getSurah();
 
       List<Map<String, dynamic>> dataList = [];
-      for (dynamic i in data['data']) {
+      for (var i in data['data']) {
         dataList.add(i);
       }
       if (data.isNotEmpty) {
         print("Get Surah Data Success");
       }
+      // print(SurahAlQuran.surahAlQuranFromSnapshot(dataList));
       return SurahAlQuran.surahAlQuranFromSnapshot(dataList);
     } catch (e) {
       print(e.toString());

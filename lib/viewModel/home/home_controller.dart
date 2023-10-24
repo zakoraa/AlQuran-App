@@ -18,9 +18,9 @@ class HomeController extends GetxController {
     isLoading.value = false;
   }
 
-  Future<void> getAyatData(int surahId, int ayatNumber) async {
+  Future<void> getAyatData(int surahId) async {
     final ayatData =
-        await AyatAlQuranController().getAyatAlQuran(surahId, ayatNumber);
+        await AyatAlQuranController().getAyatAlQuran(surahId);
     if (ayatData.isNotEmpty) {
       ayatDataList.value = List.from(ayatData);
     }

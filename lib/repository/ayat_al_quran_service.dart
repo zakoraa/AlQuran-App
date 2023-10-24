@@ -1,9 +1,9 @@
 import 'package:get/get.dart';
 
 class AyatAlQuranService extends GetConnect {
-  Future<dynamic> getAyat(int surahId, int ayatNumber) async {
+  Future getAyat(int surahId) async {
     final response =
-        await get("http://localhost:3001/quran/$surahId/$ayatNumber");
+        await get("http://quran-data.vercel.app/quran/$surahId");
 
     if (response.status.hasError) {
       print("Error: ${response.statusText}");

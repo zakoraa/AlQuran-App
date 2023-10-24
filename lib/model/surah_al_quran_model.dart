@@ -1,15 +1,16 @@
-import 'package:al_quran/model/al_quran_model.dart';
-
-class SurahAlQuran extends AlQuran {
+class SurahAlQuran{
+  int surahId;
+  String titleSurahArabic;
+  String titleSurahIndonesia;
   int numberOfAyat;
   String placeOfRevelation;
   String interpretation;
   String recitation;
 
   SurahAlQuran({
-    required super.surahId,
-    required super.titleSurahArabic,
-    required super.titleSurahIndonesia,
+    required this.surahId,
+    required this.titleSurahArabic,
+    required this.titleSurahIndonesia,
     required this.numberOfAyat,
     required this.placeOfRevelation,
     required this.interpretation,
