@@ -57,10 +57,8 @@ class AyatList extends StatelessWidget {
                   alignment: Alignment.centerRight,
                   child: Text(
                     data.arabicAyat,
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyMedium!
-                        .copyWith(fontFamily: "Arab", fontSize: 25),
+                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                        fontFamily: "Arab", fontSize: 26, height: 2.5),
                     textAlign: TextAlign.end,
                   ),
                 ),
