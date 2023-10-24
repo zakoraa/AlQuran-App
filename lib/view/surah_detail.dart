@@ -51,11 +51,90 @@ class _SurahDetailViewState extends State<SurahDetailView> {
                 ),
               ),
             ),
-            body: ListView.builder(
-              shrinkWrap: true,
+            body: SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
-              itemCount: dataList!.length,
-              itemBuilder: (context, index) => AyatList(index: index),
+              child: Column(
+                children: [
+                  widget.surahId == 1
+                      ? const SizedBox.shrink()
+                      : Padding(
+                          padding: const EdgeInsets.only(bottom: 10.0),
+                          child: Column(
+                            children: [
+                              Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  Container(
+                                    height: 10,
+                                    width: Get.width,
+                                    color:
+                                        const Color.fromARGB(255, 31, 202, 128),
+                                  ),
+                                  Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
+                                      children: List.generate(
+                                        10,
+                                        (index) => Transform.rotate(
+                                          angle: 0.76,
+                                          child: Container(
+                                            height: 5,
+                                            width: 5,
+                                            color: const Color.fromARGB(
+                                                255, 204, 254, 233),
+                                          ),
+                                        ),
+                                      )),
+                                ],
+                              ),
+                              Container(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 10),
+                                width: Get.width,
+                                child: Center(
+                                  child: Image.asset(
+                                    "assets/bismillah.png",
+                                    width: 250,
+                                  ),
+                                ),
+                              ),
+                              Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  Container(
+                                    height: 10,
+                                    width: Get.width,
+                                    color:
+                                        const Color.fromARGB(255, 31, 202, 128),
+                                  ),
+                                  Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
+                                      children: List.generate(
+                                        10,
+                                        (index) => Transform.rotate(
+                                          angle: 0.76,
+                                          child: Container(
+                                            height: 5,
+                                            width: 5,
+                                            color: const Color.fromARGB(
+                                                255, 204, 254, 233),
+                                          ),
+                                        ),
+                                      )),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                  ListView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: dataList!.length,
+                    itemBuilder: (context, index) => AyatList(index: index),
+                  ),
+                ],
+              ),
             ),
           ));
   }
