@@ -1,9 +1,10 @@
-class SurahAlQuran{
+class SurahAlQuran {
   int surahId;
   String titleSurahArabic;
   String titleSurahIndonesia;
   int numberOfAyat;
   String placeOfRevelation;
+  dynamic preBismillah;
   String interpretation;
   String recitation;
 
@@ -13,6 +14,7 @@ class SurahAlQuran{
     required this.titleSurahIndonesia,
     required this.numberOfAyat,
     required this.placeOfRevelation,
+    required this.preBismillah,
     required this.interpretation,
     required this.recitation,
   });
@@ -24,6 +26,9 @@ class SurahAlQuran{
         titleSurahIndonesia: json["asma"]["id"]["short"],
         numberOfAyat: json["ayahCount"],
         placeOfRevelation: json["type"]["id"],
+        preBismillah: json["preBismillah"] != null
+            ? json["preBismillah"]["text"]["ar"]
+            : json["preBismillah"],
         interpretation: json["tafsir"]["id"],
         recitation: json["recitation"]["full"]);
   }
@@ -41,6 +46,7 @@ class SurahAlQuran{
         surah: $surahId, 
         numberOfAyat: $numberOfAyat, 
         placeOfRevelation: $placeOfRevelation, 
+        preBismillah: $preBismillah, 
         interpretation: $interpretation, 
         recitation: $recitation
       }""";

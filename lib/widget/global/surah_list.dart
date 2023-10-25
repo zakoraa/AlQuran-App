@@ -15,7 +15,7 @@ class SurahList extends StatelessWidget {
     return GestureDetector(
       onTap: () => Get.to(
           () => SurahDetailView(
-              surahId: item.surahId, surahName: item.titleSurahIndonesia),
+              surahId: item.surahId, surahName: item.titleSurahIndonesia, preBismillah: item.preBismillah,),
           transition: Transition.rightToLeft),
       child: Container(
         color: Colors.transparent,

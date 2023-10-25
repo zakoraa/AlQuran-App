@@ -8,10 +8,14 @@ import 'package:get/get.dart';
 
 class SurahDetailView extends StatefulWidget {
   const SurahDetailView(
-      {super.key, required this.surahId, required this.surahName});
+      {super.key,
+      required this.surahId,
+      required this.surahName,
+      required this.preBismillah});
 
   final int surahId;
   final String surahName;
+  final dynamic preBismillah;
 
   @override
   State<SurahDetailView> createState() => _SurahDetailViewState();
@@ -55,42 +59,22 @@ class _SurahDetailViewState extends State<SurahDetailView> {
               physics: const BouncingScrollPhysics(),
               child: Column(
                 children: [
-                  widget.surahId == 1
+                  widget.preBismillah == null
                       ? const SizedBox.shrink()
                       : Padding(
                           padding: const EdgeInsets.only(bottom: 10.0),
                           child: Column(
                             children: [
-                              Stack(
-                                alignment: Alignment.center,
-                                children: [
-                                  Container(
-                                    height: 10,
-                                    width: Get.width,
-                                    color:
-                                        const Color.fromARGB(255, 31, 202, 128),
-                                  ),
-                                  Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceAround,
-                                      children: List.generate(
-                                        10,
-                                        (index) => Transform.rotate(
-                                          angle: 0.76,
-                                          child: Container(
-                                            height: 5,
-                                            width: 5,
-                                            color: const Color.fromARGB(
-                                                255, 204, 254, 233),
-                                          ),
-                                        ),
-                                      )),
-                                ],
+                              Container(
+                                height: 5,
+                                width: Get.width,
+                                color: const Color.fromARGB(255, 31, 202, 128),
                               ),
                               Container(
                                 padding:
                                     const EdgeInsets.symmetric(vertical: 10),
                                 width: Get.width,
+                                color: const Color.fromARGB(255, 176, 249, 219),
                                 child: Center(
                                   child: Image.asset(
                                     "assets/bismillah.png",
@@ -98,31 +82,10 @@ class _SurahDetailViewState extends State<SurahDetailView> {
                                   ),
                                 ),
                               ),
-                              Stack(
-                                alignment: Alignment.center,
-                                children: [
-                                  Container(
-                                    height: 10,
-                                    width: Get.width,
-                                    color:
-                                        const Color.fromARGB(255, 31, 202, 128),
-                                  ),
-                                  Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceAround,
-                                      children: List.generate(
-                                        10,
-                                        (index) => Transform.rotate(
-                                          angle: 0.76,
-                                          child: Container(
-                                            height: 5,
-                                            width: 5,
-                                            color: const Color.fromARGB(
-                                                255, 204, 254, 233),
-                                          ),
-                                        ),
-                                      )),
-                                ],
+                              Container(
+                                height: 3,
+                                width: Get.width,
+                                color: const Color.fromARGB(255, 31, 202, 128),
                               ),
                             ],
                           ),
