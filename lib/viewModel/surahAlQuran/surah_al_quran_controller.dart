@@ -17,7 +17,7 @@ class SurahAlQuranController extends GetxController {
       if (data.isNotEmpty) {
         print("Get Surah Data Success");
       }
-      // print(SurahAlQuran.surahAlQuranFromSnapshot(dataList));
+      
       return SurahAlQuran.surahAlQuranFromSnapshot(dataList);
     } catch (e) {
       print(e.toString());

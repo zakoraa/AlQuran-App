@@ -1,5 +1,6 @@
 class AyatAlQuran {
   int ayatNumber;
+  int juz;
   String arabicAyat;
   String latinAyat;
   String ayatTranslation;
@@ -7,6 +8,7 @@ class AyatAlQuran {
 
   AyatAlQuran({
     required this.ayatNumber,
+    required this.juz,
     required this.arabicAyat,
     required this.latinAyat,
     required this.ayatTranslation,
@@ -16,6 +18,7 @@ class AyatAlQuran {
   factory AyatAlQuran.fromJson(Map<String, dynamic> json) {
     return AyatAlQuran(
         ayatNumber: json["number"]["insurah"],
+        juz: json["juz"],
         arabicAyat: json["text"]["ar"],
         latinAyat: json["text"]["read"]["id"],
         ayatTranslation: json["translation"]["id"],

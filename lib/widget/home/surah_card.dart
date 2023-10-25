@@ -9,7 +9,6 @@ class SurahCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 180,
-      width: 100,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(40),
           boxShadow: const [

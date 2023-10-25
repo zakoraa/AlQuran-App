@@ -1,5 +1,5 @@
 import 'package:al_quran/model/surah_al_quran_model.dart';
-import 'package:al_quran/view/surah_detail.dart';
+import 'package:al_quran/view/ayat_from_surah.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../theme/color.dart';
@@ -14,7 +14,7 @@ class SurahList extends StatelessWidget {
     final item = items[index];
     return GestureDetector(
       onTap: () => Get.to(
-          () => SurahDetailView(
+          () => AyatFromSurahView(
               surahId: item.surahId, surahName: item.titleSurahIndonesia, preBismillah: item.preBismillah,),
           transition: Transition.rightToLeft),
       child: Container(

@@ -1,13 +1,13 @@
 import 'package:al_quran/model/ayat_al_quran_model.dart';
 import 'package:al_quran/theme/color.dart';
 import 'package:al_quran/util/loading.dart';
-import 'package:al_quran/viewModel/surahDetail/surah_detail_controller.dart';
+import 'package:al_quran/viewModel/ayatFromSurah/ayat_from_surah_controller.dart';
 import 'package:al_quran/widget/global/ayat_list.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class SurahDetailView extends StatefulWidget {
-  const SurahDetailView(
+class AyatFromSurahView extends StatelessWidget {
+  const AyatFromSurahView(
       {super.key,
       required this.surahId,
       required this.surahName,
@@ -18,23 +18,11 @@ class SurahDetailView extends StatefulWidget {
   final dynamic preBismillah;
 
   @override
-  State<SurahDetailView> createState() => _SurahDetailViewState();
-}
-
-class _SurahDetailViewState extends State<SurahDetailView> {
-  SurahDetailController surahDetailController =
-      Get.put(SurahDetailController());
-  List<AyatAlQuran>? dataList;
-  @override
-  void initState() {
-    surahDetailController.getAyatData(widget.surahId);
-    dataList = surahDetailController.ayatDataList;
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return Obx(() => surahDetailController.isLoading.value
+    AyatFromSurahController ayatFromSurahController =
+        Get.put(AyatFromSurahController(surahId: surahId.obs));
+    List<AyatAlQuran> ayatDataList = ayatFromSurahController.ayatDataList;
+    return Obx(() => ayatFromSurahController.isLoading.value
         ? const LoadingUtil()
         : Scaffold(
             resizeToAvoidBottomInset: false,
@@ -42,7 +30,7 @@ class _SurahDetailViewState extends State<SurahDetailView> {
             appBar: AppBar(
               automaticallyImplyLeading: false,
               title: Text(
-                widget.surahName,
+                surahName,
                 style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                     color: CustomColor.textPrimaryColor, fontSize: 20),
               ),
@@ -59,7 +47,7 @@ class _SurahDetailViewState extends State<SurahDetailView> {
               physics: const BouncingScrollPhysics(),
               child: Column(
                 children: [
-                  widget.preBismillah == null
+                  preBismillah == null
                       ? const SizedBox.shrink()
                       : Padding(
                           padding: const EdgeInsets.only(bottom: 10.0),
@@ -93,7 +81,7 @@ class _SurahDetailViewState extends State<SurahDetailView> {
                   ListView.builder(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
-                    itemCount: dataList!.length,
+                    itemCount: ayatDataList.length,
                     itemBuilder: (context, index) => AyatList(index: index),
                   ),
                 ],

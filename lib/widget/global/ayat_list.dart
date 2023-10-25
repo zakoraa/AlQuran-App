@@ -1,4 +1,4 @@
-import 'package:al_quran/viewModel/surahDetail/surah_detail_controller.dart';
+import 'package:al_quran/viewModel/ayatFromSurah/ayat_from_surah_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -12,9 +12,9 @@ class AyatList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SurahDetailController surahDetailController =
-        Get.find<SurahDetailController>();
-    List<AyatAlQuran> dataList = surahDetailController.ayatDataList;
+    AyatFromSurahController ayatFromSurahController =
+        Get.find<AyatFromSurahController>();
+    List<AyatAlQuran> dataList = ayatFromSurahController.ayatDataList;
     final data = dataList[index];
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,

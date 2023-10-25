@@ -1,4 +1,5 @@
 import 'package:al_quran/util/loading.dart';
+import 'package:al_quran/view/juz.dart';
 import 'package:al_quran/view/surah.dart';
 import 'package:al_quran/widget/home/header.dart';
 import 'package:al_quran/widget/home/juz_card.dart';
@@ -59,10 +60,15 @@ class HomeView extends StatelessWidget {
                           height: 50,
                         ),
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
+                        
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const JuzCard(),
+                            Expanded(
+                                flex: 1,
+                                child: GestureDetector(
+                                    onTap: () => Get.to(() => const JuzView(),
+                                        transition: Transition.rightToLeft),
+                                    child: const JuzCard())),
                             const SizedBox(
                               width: 10,
                             ),
