@@ -1,15 +1,14 @@
+import 'package:al_quran/viewModel/search/search_surah_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../../viewModel/search/search_controller.dart';
 
 class CustomTextField extends StatelessWidget {
   const CustomTextField({super.key});
 
   @override
   Widget build(BuildContext context) {
-    SearchViewController searchController = Get.find<SearchViewController>();
-    return GetBuilder<SearchViewController>(
+    SearchSurahController searchController = Get.find<SearchSurahController>();
+    return GetBuilder<SearchSurahController>(
         builder: (_) => TextField(
               controller: searchController.searchText,
               onChanged: searchController.onSearch,

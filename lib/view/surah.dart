@@ -1,22 +1,30 @@
 import 'package:al_quran/theme/color.dart';
+import 'package:al_quran/viewModel/home/home_controller.dart';
+import 'package:al_quran/viewModel/search/search_surah_controller.dart';
+import 'package:al_quran/viewModel/surah/surah_controller.dart';
 import 'package:al_quran/widget/global/custom_textfield.dart';
 import 'package:al_quran/widget/global/surah_list.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../model/surah_al_quran_model.dart';
-import '../viewModel/search/search_controller.dart';
+import 'ayat_from_surah.dart';
 
 class SurahView extends StatelessWidget {
-  const SurahView({super.key});
+  const SurahView({super.key, this.isTafsir = false});
+
+  final bool isTafsir;
 
   @override
   Widget build(BuildContext context) {
-    SearchViewController searchController = Get.put(SearchViewController());
+    HomeController homeController = Get.find<HomeController>();
+    SearchSurahController searchController =
+        Get.put(SearchSurahController(homeController: homeController));
     List<SurahAlQuran> items = searchController.searchResults!;
+    SurahController surahController = Get.put(SurahController());
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: const Color.fromARGB(255, 204, 254, 233),
+      backgroundColor: CustomColor.backgroundColor,
       body: SizedBox(
         height: Get.height,
         width: Get.width,
@@ -57,15 +65,32 @@ class SurahView extends StatelessWidget {
                       height: 10,
                     ),
                     Expanded(
-                      child: GetBuilder<SearchViewController>(
+                      child: GetBuilder<SearchSurahController>(
                         builder: (_) => ListView.builder(
-                          physics: const BouncingScrollPhysics(),
-                          itemCount: items.length,
-                          itemBuilder: (context, index) => SurahList(
-                            index: index,
-                            items: items,
-                          ),
-                        ),
+                            physics: const BouncingScrollPhysics(),
+                            itemCount: items.length,
+                            itemBuilder: (context, index) {
+                              SurahAlQuran item = items[index];
+
+                              return GestureDetector(
+                                onTap: () => isTafsir
+                                    ? surahController.showTafsir(
+                                        context,
+                                        item.titleSurahIndonesia,
+                                        item.interpretation)
+                                    : Get.to(
+                                        () => AyatFromSurahView(
+                                              surahId: item.surahId,
+                                              surahName:
+                                                  item.titleSurahIndonesia,
+                                              preBismillah: item.preBismillah,
+                                            ),
+                                        transition: Transition.rightToLeft),
+                                child: SurahList(
+                                  item: items[index],
+                                ),
+                              );
+                            }),
                       ),
                     ),
                   ],

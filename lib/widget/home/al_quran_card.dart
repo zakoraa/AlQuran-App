@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-
 import '../../theme/color.dart';
 
-class SurahCard extends StatelessWidget {
-  const SurahCard({super.key});
+class AlQuranCard extends StatelessWidget {
+  const AlQuranCard({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,38 +13,40 @@ class SurahCard extends StatelessWidget {
           boxShadow: const [
             BoxShadow(
                 blurRadius: 2,
-                spreadRadius: 1,
                 offset: Offset(0, 3),
                 color: CustomColor.shadowColor)
           ],
           gradient: const LinearGradient(
-              begin: Alignment.bottomLeft,
-              end: Alignment.topRight,
-              colors: [Color(0xFFDE88AD), Color(0xFFE2A8CB)])),
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                Color(0xFF87E9DA),
+                Color(0xFFA1C5F6),
+              ])),
       child: Padding(
         padding: const EdgeInsets.only(left: 20, bottom: 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Container(
-              transform: Matrix4.translationValues(0, -25, 0),
-              child: Align(
-                alignment: Alignment.topRight,
+            Align(
+              alignment: Alignment.topRight,
+              child: Container(
+                transform: Matrix4.translationValues(0, -30, 0),
                 child: Image.asset(
-                  "assets/al_quran.png",
-                  width: 140,
+                  "assets/al_quran_2.png",
+                  width: 100,
                 ),
               ),
             ),
             Row(
               children: [
                 Text(
-                  "Surah",
+                  "Al-Qur'an",
                   style: Theme.of(context)
                       .textTheme
                       .bodyLarge!
-                      .copyWith(fontSize: 25, color: Colors.white),
+                      .copyWith(fontSize: 20, color: Colors.white),
                 ),
                 const SizedBox(
                   width: 10,

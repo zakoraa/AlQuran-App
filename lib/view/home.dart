@@ -1,10 +1,9 @@
 import 'package:al_quran/util/loading.dart';
-import 'package:al_quran/view/juz.dart';
 import 'package:al_quran/view/surah.dart';
 import 'package:al_quran/widget/home/header.dart';
-import 'package:al_quran/widget/home/juz_card.dart';
+import 'package:al_quran/widget/home/al_quran_card.dart';
 import 'package:al_quran/widget/home/search_card.dart';
-import 'package:al_quran/widget/home/surah_card.dart';
+import 'package:al_quran/widget/home/tafsir_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../theme/color.dart';
@@ -60,24 +59,23 @@ class HomeView extends StatelessWidget {
                           height: 50,
                         ),
                         Row(
-                        
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Expanded(
                                 flex: 1,
                                 child: GestureDetector(
-                                    onTap: () => Get.to(() => const JuzView(),
+                                    onTap: () => Get.to(() => const SurahView(),
                                         transition: Transition.rightToLeft),
-                                    child: const JuzCard())),
+                                    child: const AlQuranCard())),
                             const SizedBox(
                               width: 10,
                             ),
                             Expanded(
                               flex: 1,
                               child: GestureDetector(
-                                  onTap: () => Get.to(() => const SurahView(),
+                                  onTap: () => Get.to(() => const SurahView(isTafsir: true),
                                       transition: Transition.rightToLeft),
-                                  child: const SurahCard()),
+                                  child: const TafsirCard()),
                             ),
                           ],
                         ),

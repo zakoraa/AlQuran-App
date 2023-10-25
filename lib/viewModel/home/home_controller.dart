@@ -15,8 +15,8 @@ class HomeController extends GetxController {
   }
 
   @override
-  Future<void> onInit() async {
-    super.onInit();
+  void onInit() async {
     await getSurahData();
+    super.onInit();
   }
 }
