@@ -4,9 +4,9 @@ class SurahAlQuran {
   String titleSurahIndonesia;
   int numberOfAyat;
   String placeOfRevelation;
-  dynamic preBismillah;
   String interpretation;
-  String recitation;
+  String audio;
+  bool isPlaying;
 
   SurahAlQuran({
     required this.surahId,
@@ -14,9 +14,9 @@ class SurahAlQuran {
     required this.titleSurahIndonesia,
     required this.numberOfAyat,
     required this.placeOfRevelation,
-    required this.preBismillah,
     required this.interpretation,
-    required this.recitation,
+    required this.audio,
+    required this.isPlaying
   });
 
   factory SurahAlQuran.fromJson(Map<String, dynamic> json) {
@@ -26,11 +26,10 @@ class SurahAlQuran {
         titleSurahIndonesia: json["asma"]["id"]["short"],
         numberOfAyat: json["ayahCount"],
         placeOfRevelation: json["type"]["id"],
-        preBismillah: json["preBismillah"] != null
-            ? json["preBismillah"]["text"]["ar"]
-            : json["preBismillah"],
         interpretation: json["tafsir"]["id"],
-        recitation: json["recitation"]["full"]);
+        audio: json["recitation"]["full"],
+        isPlaying: false
+        );
   }
 
   static List<SurahAlQuran> surahAlQuranFromSnapshot(List snapshot) {
@@ -46,9 +45,8 @@ class SurahAlQuran {
         surah: $surahId, 
         numberOfAyat: $numberOfAyat, 
         placeOfRevelation: $placeOfRevelation, 
-        preBismillah: $preBismillah, 
         interpretation: $interpretation, 
-        recitation: $recitation
+        audio: $audio
       }""";
   }
 }

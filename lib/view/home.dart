@@ -1,14 +1,13 @@
 import 'package:al_quran/util/loading.dart';
-import 'package:al_quran/view/surah.dart';
 import 'package:al_quran/widget/home/header.dart';
 import 'package:al_quran/widget/home/al_quran_card.dart';
-import 'package:al_quran/widget/home/search_card.dart';
 import 'package:al_quran/widget/home/tafsir_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../theme/color.dart';
 import '../util/background_app.dart';
 import '../viewModel/home/home_controller.dart';
+import '../widget/home/al_quran_with_audio.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -42,7 +41,7 @@ class HomeView extends StatelessWidget {
                 SingleChildScrollView(
                   physics: const BouncingScrollPhysics(),
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
                     child: Column(
                       children: [
                         const SizedBox(
@@ -58,31 +57,23 @@ class HomeView extends StatelessWidget {
                         const SizedBox(
                           height: 50,
                         ),
-                        Row(
+                        const Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Expanded(
-                                flex: 1,
-                                child: GestureDetector(
-                                    onTap: () => Get.to(() => const SurahView(),
-                                        transition: Transition.rightToLeft),
-                                    child: const AlQuranCard())),
-                            const SizedBox(
+                            Expanded(flex: 1, child: AlQuranCard()),
+                            SizedBox(
                               width: 10,
                             ),
                             Expanded(
                               flex: 1,
-                              child: GestureDetector(
-                                  onTap: () => Get.to(() => const SurahView(isTafsir: true),
-                                      transition: Transition.rightToLeft),
-                                  child: const TafsirCard()),
+                              child: TafsirCard(),
                             ),
                           ],
                         ),
                         const SizedBox(
                           height: 25,
                         ),
-                        const SearchCard(),
+                        const AlQuranWithAudioCard(),
                         const SizedBox(
                           height: 50,
                         )

@@ -11,11 +11,11 @@ class AyatFromSurahView extends StatelessWidget {
       {super.key,
       required this.surahId,
       required this.surahName,
-      required this.preBismillah});
+      });
 
   final int surahId;
   final String surahName;
-  final dynamic preBismillah;
+
 
   @override
   Widget build(BuildContext context) {
@@ -47,17 +47,24 @@ class AyatFromSurahView extends StatelessWidget {
               physics: const BouncingScrollPhysics(),
               child: Column(
                 children: [
-                  preBismillah == null
+                  surahId == 1 || surahId == 9
                       ? const SizedBox.shrink()
                       : Padding(
                           padding: const EdgeInsets.only(bottom: 10.0),
                           child: Column(
                             children: [
                               Container(
-                                height: 5,
-                                width: Get.width,
-                                color: const Color.fromARGB(255, 31, 202, 128),
-                              ),
+                                  height: 5,
+                                  width: Get.width,
+                                  decoration: const BoxDecoration(
+                                    gradient: LinearGradient(
+                                        begin: Alignment.topLeft,
+                                        end: Alignment.bottomRight,
+                                        colors: [
+                                          Color.fromARGB(255, 118, 174, 254),
+                                          Color.fromARGB(255, 53, 242, 214),
+                                        ]),
+                                  )),
                               Container(
                                 padding:
                                     const EdgeInsets.symmetric(vertical: 10),
@@ -71,10 +78,17 @@ class AyatFromSurahView extends StatelessWidget {
                                 ),
                               ),
                               Container(
-                                height: 3,
-                                width: Get.width,
-                                color: const Color.fromARGB(255, 31, 202, 128),
-                              ),
+                                  height: 3,
+                                  width: Get.width,
+                                  decoration: const BoxDecoration(
+                                    gradient: LinearGradient(
+                                        begin: Alignment.topLeft,
+                                        end: Alignment.bottomRight,
+                                        colors: [
+                                          Color.fromARGB(255, 53, 242, 214),
+                                          Color.fromARGB(255, 118, 174, 254),
+                                        ]),
+                                  )),
                             ],
                           ),
                         ),

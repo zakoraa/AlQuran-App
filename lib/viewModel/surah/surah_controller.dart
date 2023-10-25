@@ -13,7 +13,7 @@ class SurahController extends GetxController {
         ),
         content: Text(
           tafsirContent,
-          style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontSize: 14),
+          style: Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 14),
         ),
         actions: [
           GestureDetector(

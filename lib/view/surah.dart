@@ -1,9 +1,12 @@
 import 'package:al_quran/theme/color.dart';
+import 'package:al_quran/viewModel/audio/audio_controller.dart';
 import 'package:al_quran/viewModel/home/home_controller.dart';
 import 'package:al_quran/viewModel/search/search_surah_controller.dart';
 import 'package:al_quran/viewModel/surah/surah_controller.dart';
+import 'package:al_quran/widget/global/audio_play.dart';
 import 'package:al_quran/widget/global/custom_textfield.dart';
 import 'package:al_quran/widget/global/surah_list.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -11,9 +14,9 @@ import '../model/surah_al_quran_model.dart';
 import 'ayat_from_surah.dart';
 
 class SurahView extends StatelessWidget {
-  const SurahView({super.key, this.isTafsir = false});
+  const SurahView({super.key, this.isTafsir = false, this.isAudio = false});
 
-  final bool isTafsir;
+  final bool isTafsir, isAudio;
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +25,9 @@ class SurahView extends StatelessWidget {
         Get.put(SearchSurahController(homeController: homeController));
     List<SurahAlQuran> items = searchController.searchResults!;
     SurahController surahController = Get.put(SurahController());
+    AudioPlayer audioPlayer = AudioPlayer();
+    AudioController audioController =
+        Get.put(AudioController(audioPlayer: audioPlayer));
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: CustomColor.backgroundColor,
@@ -83,11 +89,11 @@ class SurahView extends StatelessWidget {
                                               surahId: item.surahId,
                                               surahName:
                                                   item.titleSurahIndonesia,
-                                              preBismillah: item.preBismillah,
                                             ),
                                         transition: Transition.rightToLeft),
                                 child: SurahList(
                                   item: items[index],
+                                  isAudio: isAudio,
                                 ),
                               );
                             }),
@@ -96,7 +102,8 @@ class SurahView extends StatelessWidget {
                   ],
                 ),
               ),
-            )
+            ),
+            const AudioPlay()
           ],
         ),
       ),

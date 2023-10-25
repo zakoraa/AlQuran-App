@@ -1,14 +1,19 @@
 import 'package:al_quran/model/surah_al_quran_model.dart';
+import 'package:al_quran/viewModel/audio/audio_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../theme/color.dart';
 
 class SurahList extends StatelessWidget {
-  const SurahList({super.key, required this.item});
+  const SurahList({super.key, required this.item, this.isAudio = true});
 
   final SurahAlQuran item;
+  final bool isAudio;
   @override
   Widget build(BuildContext context) {
+    AudioController audioController = Get.find<AudioController>();
+    audioController.item = item;
+    String audio = "${item.audio.substring(0, 4)}s${item.audio.substring(4)}";
     return Container(
       color: Colors.transparent,
       width: Get.width,
@@ -78,47 +83,71 @@ class SurahList extends StatelessWidget {
               ))
             ],
           ),
-          Align(
-            alignment: Alignment.centerRight,
-            child: GestureDetector(
-              onTap: () {},
-              child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                height: 40,
-                decoration: BoxDecoration(
-                    gradient: const LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [
-                          Color.fromARGB(255, 118, 174, 254),
-                          Color.fromARGB(255, 53, 242, 214),
-                        ]),
-                    borderRadius: BorderRadius.circular(5)),
-                child: Obx(
-                  () => Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "Matikan Audio",
-                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                            fontSize: 14,
-                            color: const Color.fromARGB(255, 244, 243, 243)),
+          isAudio
+              ? Align(
+                  alignment: Alignment.centerRight,
+                  child: GestureDetector(
+                    onTap: () async {
+                      await audioController.playAudio(item, audio);
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      height: 40,
+                      decoration: BoxDecoration(
+                          gradient: const LinearGradient(
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                              colors: [
+                                Color.fromARGB(255, 118, 174, 254),
+                                Color.fromARGB(255, 53, 242, 214),
+                              ]),
+                          borderRadius: BorderRadius.circular(5)),
+                      child: GetBuilder<AudioController>(
+                        builder: (_) => audioController.isLoading.value
+                            ? Center(
+                                child: Text(
+                                  "Loading...",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium!
+                                      .copyWith(
+                                          color: CustomColor.textPrimaryColor),
+                                ),
+                              )
+                            : Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    item.isPlaying
+                                        ? "Matikan Audio "
+                                        : "Mainkan Audio",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyMedium!
+                                        .copyWith(
+                                            fontSize: 14,
+                                            color: const Color.fromARGB(
+                                                255, 244, 243, 243)),
+                                  ),
+                                  const SizedBox(
+                                    width: 5,
+                                  ),
+                                  Icon(
+                                    item.isPlaying
+                                        ? Icons.pause
+                                        : Icons.play_arrow,
+                                    color: const Color.fromARGB(
+                                        255, 244, 243, 243),
+                                    size: 28,
+                                  ),
+                                ],
+                              ),
                       ),
-                      const SizedBox(
-                        width: 5,
-                      ),
-                      const Icon(
-                        Icons.play_arrow,
-                        color: Color.fromARGB(255, 244, 243, 243),
-                        size: 28,
-                      ),
-                    ],
+                    ),
                   ),
-                ),
-              ),
-            ),
-          ),
+                )
+              : const SizedBox.shrink(),
           const SizedBox(
             height: 5,
           ),
