@@ -92,7 +92,8 @@ class SurahView extends StatelessWidget {
                                             ),
                                         transition: Transition.rightToLeft),
                                 child: SurahList(
-                                  item: items[index],
+                                  items: items,
+                                  index : index,
                                   isAudio: isAudio,
                                 ),
                               );

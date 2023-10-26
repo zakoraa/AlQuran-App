@@ -13,6 +13,10 @@ class ColumnSurahList extends StatelessWidget {
     List<SurahAlQuran> items = homeController.surahDataList;
     return Column(
         children: List.generate(
-            items.length, (index) => SurahList(item: items[index],)));
+            items.length,
+            (index) => SurahList(
+                  items: items,
+                  index: index,
+                )));
   }
 }

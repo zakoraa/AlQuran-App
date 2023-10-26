@@ -19,7 +19,7 @@ class AudioController extends GetxController {
     this.audioURL = audioURL;
     this.item = item;
     isShown.value = !isShown.value;
-    item.isPlaying = isShown.value;
+    item.isPlaying = isShown.value ;
     await handlePlay(audioURL);
     update();
   }
@@ -40,7 +40,7 @@ class AudioController extends GetxController {
       await audioPlayer.pause();
       isLoading.value = false;
     }
-    update();
+     update();
   }
 
   @override
