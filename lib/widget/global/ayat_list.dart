@@ -22,7 +22,8 @@ class AyatList extends StatelessWidget {
         Get.find<AyatFromSurahController>();
     AudioController audioController = Get.find<AudioController>();
     List<AyatAlQuran> itemList = ayatFromSurahController.ayatDataList;
-    final item = itemList[index];
+    audioController.ayatList = itemList;
+    final AyatAlQuran item = itemList[index];
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

@@ -1,3 +1,4 @@
+import 'package:al_quran/model/ayat_al_quran_model.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:get/get.dart';
 
@@ -14,6 +15,8 @@ class AudioController extends GetxController {
   RxBool isShown = false.obs;
   dynamic item;
   String? audioURL;
+  List<AyatAlQuran>? ayatList;
+  int index = 1;
 
   Future<void> playAudio(dynamic item, String audioURL) async {
     isLoading.value = true;
@@ -22,7 +25,6 @@ class AudioController extends GetxController {
     isShown.value = !isShown.value;
     item.isPlaying = isShown.value;
     update();
-
     await handlePlay(audioURL);
     update();
   }
@@ -31,11 +33,14 @@ class AudioController extends GetxController {
     final newPosition = Duration(seconds: value.toInt());
     await audioPlayer.seek(newPosition);
     await audioPlayer.resume();
+
     update();
   }
 
   Future<void> handlePlay(String audioURL) async {
     if (item!.isPlaying) {
+      index = item.ayatNumber;
+      print("index pause : ${index}");
       await audioPlayer.play(UrlSource(audioURL));
       isLoading.value = false;
     } else {
@@ -43,6 +48,13 @@ class AudioController extends GetxController {
       isLoading.value = false;
     }
     update();
+  }
+
+  Future<void> playNextAudio() async {
+    if (index < ayatList!.length - 1) {
+      print("index : $index");
+      await playAudio(ayatList![index], ayatList![index].audio);
+    } else {}
   }
 
   @override
@@ -63,11 +75,12 @@ class AudioController extends GetxController {
       update();
     });
 
-    audioPlayer.onPlayerComplete.listen((event) {
+    audioPlayer.onPlayerComplete.listen((event) async {
       isShown.value = false;
       isPlaying.value = false;
       item.isPlaying = false;
       isLoading.value = false;
+      await playNextAudio();
       update();
     });
   }

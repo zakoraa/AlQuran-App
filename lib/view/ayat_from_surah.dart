@@ -1,7 +1,6 @@
 import 'package:al_quran/model/ayat_al_quran_model.dart';
 import 'package:al_quran/theme/color.dart';
 import 'package:al_quran/util/loading.dart';
-import 'package:al_quran/viewModel/audio/audio_controller.dart';
 import 'package:al_quran/viewModel/ayatFromSurah/ayat_from_surah_controller.dart';
 import 'package:al_quran/widget/global/ayat_list.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +23,6 @@ class AyatFromSurahView extends StatelessWidget {
     AyatFromSurahController ayatFromSurahController =
         Get.put(AyatFromSurahController(surahId: surahId.obs));
     List<AyatAlQuran> ayatDataList = ayatFromSurahController.ayatDataList;
-    AudioController audioController = Get.find<AudioController>();
     return Obx(() => ayatFromSurahController.isLoading.value
         ? const LoadingUtil()
         : Scaffold(

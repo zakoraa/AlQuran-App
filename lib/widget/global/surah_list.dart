@@ -14,7 +14,6 @@ class SurahList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AudioController audioController = Get.find<AudioController>();
-
     String audio = "${item.audio.substring(0, 4)}s${item.audio.substring(4)}";
     return Container(
       color: Colors.transparent,

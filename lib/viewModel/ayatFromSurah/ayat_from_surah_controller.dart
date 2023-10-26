@@ -20,8 +20,8 @@ class AyatFromSurahController extends GetxController {
   }
 
   @override
-  void onInit() {
-    getAyatData(surahId.value);
+  void onInit() async{
+    await getAyatData(surahId.value);
     super.onInit();
   }
 }
