@@ -104,7 +104,7 @@ class SurahList extends StatelessWidget {
                           overlayColor: const MaterialStatePropertyAll(
                             Color.fromARGB(112, 117, 168, 239),
                           ),
-                          onTap: audioController.isPlaying.value
+                          onTap: audioController.isPlaying.value || audioController.isLoading.value
                               ? () {}
                               : () async {
                                   await audioController.playAudio(item, audio);

@@ -23,7 +23,7 @@ class SurahView extends StatelessWidget {
     HomeController homeController = Get.find<HomeController>();
     SearchSurahController searchController =
         Get.put(SearchSurahController(homeController: homeController));
-    List<SurahAlQuran> items = searchController.searchResults!;
+    List<SurahAlQuran> itemList = searchController.searchResults!;
     SurahController surahController = Get.put(SurahController());
     AudioPlayer audioPlayer = AudioPlayer();
     AudioController audioController =
@@ -75,9 +75,9 @@ class SurahView extends StatelessWidget {
                       child: GetBuilder<SearchSurahController>(
                         builder: (_) => ListView.builder(
                             physics: const BouncingScrollPhysics(),
-                            itemCount: items.length,
+                            itemCount: itemList.length,
                             itemBuilder: (context, index) {
-                              SurahAlQuran item = items[index];
+                              SurahAlQuran item = itemList[index];
                               return GestureDetector(
                                 onTap: () => isTafsir
                                     ? surahController.showTafsir(

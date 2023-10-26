@@ -39,7 +39,11 @@ class AudioController extends GetxController {
 
   Future<void> handlePlay(String audioURL) async {
     if (item!.isPlaying) {
-      index = item.ayatNumber;
+      if (item is AyatAlQuran) {
+        index = item.ayatNumber;
+      } else {
+        index = item.surahId;
+      }
       print("index pause : ${index}");
       await audioPlayer.play(UrlSource(audioURL));
       isLoading.value = false;
@@ -54,7 +58,7 @@ class AudioController extends GetxController {
     if (index < ayatList!.length - 1) {
       print("index : $index");
       await playAudio(ayatList![index], ayatList![index].audio);
-    } else {}
+    }
   }
 
   @override
@@ -80,7 +84,9 @@ class AudioController extends GetxController {
       isPlaying.value = false;
       item.isPlaying = false;
       isLoading.value = false;
-      await playNextAudio();
+      if (item is AyatAlQuran) {
+        await playNextAudio();
+      }
       update();
     });
   }
