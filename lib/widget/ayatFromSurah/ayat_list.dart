@@ -1,7 +1,6 @@
 import 'package:al_quran/viewModel/ayatFromSurah/ayat_from_surah_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../model/ayat_al_quran_model.dart';
 import '../../theme/color.dart';
 import '../../viewModel/audio/audio_controller.dart';
@@ -124,7 +123,8 @@ class AyatList extends StatelessWidget {
                         overlayColor: const MaterialStatePropertyAll(
                           Color.fromARGB(112, 117, 168, 239),
                         ),
-                        onTap: audioController.isPlaying.value || audioController.isLoading.value
+                        onTap: audioController.isPlaying.value ||
+                                audioController.isLoading.value
                             ? () {}
                             : () async {
                                 await audioController.playAudio(

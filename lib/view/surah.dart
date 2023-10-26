@@ -5,8 +5,7 @@ import 'package:al_quran/viewModel/search/search_surah_controller.dart';
 import 'package:al_quran/viewModel/surah/surah_controller.dart';
 import 'package:al_quran/widget/global/audio_play.dart';
 import 'package:al_quran/widget/global/custom_textfield.dart';
-import 'package:al_quran/widget/global/surah_list.dart';
-import 'package:audioplayers/audioplayers.dart';
+import 'package:al_quran/widget/surah/surah_list.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -25,9 +24,7 @@ class SurahView extends StatelessWidget {
         Get.put(SearchSurahController(homeController: homeController));
     List<SurahAlQuran> itemList = searchController.searchResults!;
     SurahController surahController = Get.put(SurahController());
-    AudioPlayer audioPlayer = AudioPlayer();
-    AudioController audioController =
-        Get.put(AudioController(audioPlayer: audioPlayer));
+    AudioController audioController = Get.find<AudioController>();
     audioController.isAudio.value = isAudio;
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -85,11 +82,7 @@ class SurahView extends StatelessWidget {
                                         item.titleSurahIndonesia,
                                         item.interpretation)
                                     : Get.to(
-                                        () => AyatFromSurahView(
-                                              surahId: item.surahId,
-                                              surahName:
-                                                  item.titleSurahIndonesia,
-                                            ),
+                                        () => AyatFromSurahView(item: item),
                                         transition: Transition.rightToLeft),
                                 child: SurahList(
                                   item: item,

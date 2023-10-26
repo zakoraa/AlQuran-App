@@ -1,27 +1,23 @@
 import 'package:al_quran/model/ayat_al_quran_model.dart';
+import 'package:al_quran/model/surah_al_quran_model.dart';
 import 'package:al_quran/theme/color.dart';
 import 'package:al_quran/util/loading.dart';
 import 'package:al_quran/viewModel/ayatFromSurah/ayat_from_surah_controller.dart';
-import 'package:al_quran/widget/global/ayat_list.dart';
+import 'package:al_quran/widget/ayatFromSurah/ayat_list.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../widget/global/audio_play.dart';
 
 class AyatFromSurahView extends StatelessWidget {
-  const AyatFromSurahView({
-    super.key,
-    required this.surahId,
-    required this.surahName,
-  });
+  const AyatFromSurahView({super.key, required this.item});
 
-  final int surahId;
-  final String surahName;
+  final SurahAlQuran item;
 
   @override
   Widget build(BuildContext context) {
     AyatFromSurahController ayatFromSurahController =
-        Get.put(AyatFromSurahController(surahId: surahId.obs));
+        Get.put(AyatFromSurahController(surahId: item.surahId.obs));
     List<AyatAlQuran> ayatDataList = ayatFromSurahController.ayatDataList;
     return Obx(() => ayatFromSurahController.isLoading.value
         ? const LoadingUtil()
@@ -31,9 +27,9 @@ class AyatFromSurahView extends StatelessWidget {
             appBar: AppBar(
               automaticallyImplyLeading: false,
               title: Text(
-                surahName,
+                item.titleSurahIndonesia,
                 style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                    color: CustomColor.textPrimaryColor, fontSize: 20),
+                    color: CustomColor.textPrimaryColor, fontSize: 18),
               ),
               leading: GestureDetector(
                 onTap: () => Get.back(),
@@ -43,6 +39,17 @@ class AyatFromSurahView extends StatelessWidget {
                   color: CustomColor.textPrimaryColor,
                 ),
               ),
+              actions: [
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 5.0, horizontal: 15),
+                  child: Text(
+                    item.titleSurahArabic,
+                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                        color: CustomColor.textPrimaryColor, fontSize: 25),
+                  ),
+                ),
+              ],
             ),
             body: SizedBox(
               height: Get.height,
@@ -53,7 +60,7 @@ class AyatFromSurahView extends StatelessWidget {
                     physics: const BouncingScrollPhysics(),
                     child: Column(
                       children: [
-                        surahId == 1 || surahId == 9
+                        item.surahId == 1 || item.surahId == 9
                             ? const SizedBox.shrink()
                             : Padding(
                                 padding: const EdgeInsets.only(bottom: 10.0),

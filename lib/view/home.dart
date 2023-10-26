@@ -1,12 +1,17 @@
+// ignore_for_file: unused_local_variable
+
 import 'package:al_quran/util/loading.dart';
 import 'package:al_quran/widget/home/header.dart';
 import 'package:al_quran/widget/home/al_quran_card.dart';
 import 'package:al_quran/widget/home/tafsir_card.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../theme/color.dart';
 import '../util/background_app.dart';
+import '../viewModel/audio/audio_controller.dart';
 import '../viewModel/home/home_controller.dart';
+import '../widget/global/audio_play.dart';
 import '../widget/home/al_quran_with_audio.dart';
 
 class HomeView extends StatelessWidget {
@@ -15,6 +20,9 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     HomeController homeController = Get.put(HomeController());
+    AudioPlayer audioPlayer = AudioPlayer();
+    AudioController audioController =
+        Get.put(AudioController(audioPlayer: audioPlayer));
     return Obx(() => homeController.isLoading.value
         ? const Scaffold(body: LoadingUtil())
         : Scaffold(
@@ -80,7 +88,8 @@ class HomeView extends StatelessWidget {
                       ],
                     ),
                   ),
-                )
+                ),
+                const AudioPlay()
               ]),
             ),
           ));

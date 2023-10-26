@@ -33,7 +33,6 @@ class AudioController extends GetxController {
     final newPosition = Duration(seconds: value.toInt());
     await audioPlayer.seek(newPosition);
     await audioPlayer.resume();
-
     update();
   }
 
@@ -44,7 +43,6 @@ class AudioController extends GetxController {
       } else {
         index = item.surahId;
       }
-      print("index pause : ${index}");
       await audioPlayer.play(UrlSource(audioURL));
       isLoading.value = false;
     } else {
@@ -56,7 +54,6 @@ class AudioController extends GetxController {
 
   Future<void> playNextAudio() async {
     if (index < ayatList!.length - 1) {
-      print("index : $index");
       await playAudio(ayatList![index], ayatList![index].audio);
     }
   }
