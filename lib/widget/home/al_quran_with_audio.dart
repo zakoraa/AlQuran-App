@@ -10,7 +10,8 @@ class AlQuranWithAudioCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Get.to(() => const SurahView(isAudio: true)),
+      onTap: () => Get.to(() => const SurahView(isAudio: true),
+          transition: Transition.rightToLeft),
       child: Container(
         height: 150,
         width: Get.width,

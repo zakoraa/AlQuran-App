@@ -53,7 +53,7 @@ class AudioController extends GetxController {
   }
 
   Future<void> playNextAudio() async {
-    if (index < ayatList!.length - 1) {
+    if (index <= ayatList!.length - 1) {
       await playAudio(ayatList![index], ayatList![index].audio);
     }
   }
