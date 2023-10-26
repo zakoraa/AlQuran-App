@@ -5,6 +5,7 @@ class AyatAlQuran {
   String latinAyat;
   String ayatTranslation;
   dynamic audio;
+  bool isPlaying;
 
   AyatAlQuran({
     required this.ayatNumber,
@@ -13,6 +14,7 @@ class AyatAlQuran {
     required this.latinAyat,
     required this.ayatTranslation,
     required this.audio,
+    required this.isPlaying,
   });
 
   factory AyatAlQuran.fromJson(Map<String, dynamic> json) {
@@ -22,7 +24,8 @@ class AyatAlQuran {
         arabicAyat: json["text"]["ar"],
         latinAyat: json["text"]["read"]["id"],
         ayatTranslation: json["translation"]["id"],
-        audio: json["audio"]["url"]);
+        audio: json["audio"]["url"],
+        isPlaying: false);
   }
 
   static List<AyatAlQuran> ayatAlQuranFromSnapshot(List snapshot) {

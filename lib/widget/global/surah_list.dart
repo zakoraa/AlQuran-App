@@ -5,19 +5,16 @@ import 'package:get/get.dart';
 import '../../theme/color.dart';
 
 class SurahList extends StatelessWidget {
-  const SurahList(
-      {super.key,
-      required this.items,
-      this.isAudio = true,
-      required this.index});
+  const SurahList({
+    super.key,
+    required this.item,
+  });
 
-  final List<SurahAlQuran> items;
-  final bool isAudio;
-  final int index;
+  final SurahAlQuran item;
   @override
   Widget build(BuildContext context) {
     AudioController audioController = Get.find<AudioController>();
-    SurahAlQuran item = items[index];
+
     String audio = "${item.audio.substring(0, 4)}s${item.audio.substring(4)}";
     return Container(
       color: Colors.transparent,
@@ -89,78 +86,101 @@ class SurahList extends StatelessWidget {
             ],
           ),
           GetBuilder<AudioController>(
-              builder: (_) => isAudio
-                  ? Align(
-                      alignment: Alignment.centerRight,
-                      child: GestureDetector(
-                        onTap: audioController.isPlaying.value
-                            ? () {}
-                            : () async {
-                                await audioController.playAudio(item, audio);
-                              },
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 10),
-                          height: 40,
-                          decoration: BoxDecoration(
-                              gradient: const LinearGradient(
-                                  begin: Alignment.topLeft,
-                                  end: Alignment.bottomRight,
-                                  colors: [
-                                    Color.fromARGB(255, 118, 174, 254),
-                                    Color.fromARGB(255, 53, 242, 214),
-                                  ]),
-                              borderRadius: BorderRadius.circular(5)),
-                          child: audioController.isLoading.value
-                              ? const SizedBox(
-                                  height: 30,
-                                  width: 30,
-                                  child: Center(
-                                    child: CircularProgressIndicator(
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                )
-                              : Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
+              builder: (_) => audioController.isAudio.value
+                  ? Container(
+                      decoration: BoxDecoration(
+                          gradient: const LinearGradient(
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                              colors: [
+                                Color.fromARGB(255, 117, 168, 239),
+                                Color.fromARGB(255, 75, 235, 211),
+                              ]),
+                          borderRadius: BorderRadius.circular(5)),
+                      child: Material(
+                        borderRadius: BorderRadius.circular(5),
+                        color: Colors.transparent,
+                        child: InkWell(
+                          splashColor: Colors.transparent,
+                          overlayColor: const MaterialStatePropertyAll(
+                            Color.fromARGB(112, 117, 168, 239),
+                          ),
+                          onTap: audioController.isPlaying.value
+                              ? () {}
+                              : () async {
+                                  await audioController.playAudio(item, audio);
+                                },
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            height: 40,
+                            width: Get.width,
+                            color: Colors.transparent,
+                            child: audioController.isLoading.value
+                                ? Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        item.isPlaying
+                                            ? "Sebentar ya..."
+                                            : "Audio",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyMedium!
+                                            .copyWith(
+                                                fontSize: 14,
+                                                color: const Color.fromARGB(
+                                                    255, 244, 243, 243)),
+                                      ),
+                                      const SizedBox(
+                                        width: 5,
+                                      ),
                                       item.isPlaying
-                                          ? "Sedang diputar..."
-                                          : "Audio",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyMedium!
-                                          .copyWith(
-                                              fontSize: 14,
-                                              color: const Color.fromARGB(
-                                                  255, 244, 243, 243)),
-                                    ),
-                                    const SizedBox(
-                                      width: 5,
-                                    ),
-                                    item.isPlaying
-                                        ? const SizedBox.shrink()
-                                        : const Icon(
-                                            Icons.play_arrow,
-                                            color: Color.fromARGB(
-                                                255, 244, 243, 243),
-                                            size: 25,
-                                          ),
-                                  ],
-                                ),
+                                          ? const SizedBox.shrink()
+                                          : const Icon(
+                                              Icons.play_arrow,
+                                              color: Color.fromARGB(
+                                                  255, 244, 243, 243),
+                                              size: 20,
+                                            ),
+                                    ],
+                                  )
+                                : Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        item.isPlaying
+                                            ? "Sedang diputar..."
+                                            : "Audio",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyMedium!
+                                            .copyWith(
+                                                fontSize: 14,
+                                                color: const Color.fromARGB(
+                                                    255, 244, 243, 243)),
+                                      ),
+                                      const SizedBox(
+                                        width: 5,
+                                      ),
+                                      item.isPlaying
+                                          ? const SizedBox.shrink()
+                                          : const Icon(
+                                              Icons.play_arrow,
+                                              color: Color.fromARGB(
+                                                  255, 244, 243, 243),
+                                              size: 20,
+                                            ),
+                                    ],
+                                  ),
+                          ),
                         ),
                       ),
                     )
                   : const SizedBox.shrink()),
-          const SizedBox(
-            height: 5,
-          ),
-          Container(
-            height: 1,
-            width: Get.width,
-            color: const Color.fromARGB(255, 142, 180, 186),
-          )
         ],
       ),
     );

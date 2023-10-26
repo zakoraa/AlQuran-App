@@ -28,6 +28,7 @@ class SurahView extends StatelessWidget {
     AudioPlayer audioPlayer = AudioPlayer();
     AudioController audioController =
         Get.put(AudioController(audioPlayer: audioPlayer));
+    audioController.isAudio.value = isAudio;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: CustomColor.backgroundColor,
@@ -77,7 +78,6 @@ class SurahView extends StatelessWidget {
                             itemCount: items.length,
                             itemBuilder: (context, index) {
                               SurahAlQuran item = items[index];
-
                               return GestureDetector(
                                 onTap: () => isTafsir
                                     ? surahController.showTafsir(
@@ -92,9 +92,7 @@ class SurahView extends StatelessWidget {
                                             ),
                                         transition: Transition.rightToLeft),
                                 child: SurahList(
-                                  items: items,
-                                  index : index,
-                                  isAudio: isAudio,
+                                  item: item,
                                 ),
                               );
                             }),

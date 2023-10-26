@@ -2,8 +2,6 @@ import 'package:al_quran/viewModel/audio/audio_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../theme/color.dart';
-
 class AudioPlay extends StatelessWidget {
   const AudioPlay({super.key});
 
@@ -27,8 +25,8 @@ class AudioPlay extends StatelessWidget {
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                     colors: [
-                      Color.fromARGB(255, 53, 242, 214),
-                      Color.fromARGB(255, 118, 174, 254),
+                      Color.fromARGB(255, 75, 235, 211),
+                      Color.fromARGB(255, 117, 168, 239),
                     ]),
                 borderRadius: BorderRadius.circular(50),
                 boxShadow: const [
@@ -39,9 +37,13 @@ class AudioPlay extends StatelessWidget {
                       color: Color.fromARGB(161, 157, 157, 157))
                 ]),
             child: audioController.isLoading.value
-                ? const Center(
-                    child: CircularProgressIndicator(
-                      color: Colors.white,
+                ? const SizedBox(
+                    height: 5,
+                    width: 5,
+                    child: Center(
+                      child: CircularProgressIndicator(
+                        color: Colors.white,
+                      ),
                     ),
                   )
                 : Row(
@@ -62,8 +64,8 @@ class AudioPlay extends StatelessWidget {
                             }),
                       ),
                       GestureDetector(
-                        onTap: () async => await audioController
-                            .playAudio(audioController.item!, audioController.audioURL!),
+                        onTap: () async => await audioController.playAudio(
+                            audioController.item!, audioController.audioURL!),
                         child: SizedBox(
                           child: Icon(
                             audioController.isPlaying.value

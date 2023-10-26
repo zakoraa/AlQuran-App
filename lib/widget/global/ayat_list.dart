@@ -4,18 +4,25 @@ import 'package:get/get.dart';
 
 import '../../model/ayat_al_quran_model.dart';
 import '../../theme/color.dart';
+import '../../viewModel/audio/audio_controller.dart';
 
 class AyatList extends StatelessWidget {
-  const AyatList({super.key, required this.index});
+  const AyatList({
+    super.key,
+    required this.index,
+    this.isAudio = true,
+  });
 
   final int index;
+  final bool isAudio;
 
   @override
   Widget build(BuildContext context) {
     AyatFromSurahController ayatFromSurahController =
         Get.find<AyatFromSurahController>();
-    List<AyatAlQuran> dataList = ayatFromSurahController.ayatDataList;
-    final data = dataList[index];
+    AudioController audioController = Get.find<AudioController>();
+    List<AyatAlQuran> itemList = ayatFromSurahController.ayatDataList;
+    final item = itemList[index];
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -41,7 +48,7 @@ class AyatList extends StatelessWidget {
                       ),
                       Center(
                         child: Text(
-                          "${data.ayatNumber}",
+                          "${item.ayatNumber}",
                           style: Theme.of(context)
                               .textTheme
                               .bodyLarge!
@@ -56,7 +63,7 @@ class AyatList extends StatelessWidget {
                 child: Align(
                   alignment: Alignment.centerRight,
                   child: Text(
-                    data.arabicAyat,
+                    item.arabicAyat,
                     style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                         fontFamily: "Arab", fontSize: 26, height: 2.5),
                     textAlign: TextAlign.end,
@@ -75,7 +82,7 @@ class AyatList extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                data.latinAyat,
+                item.latinAyat,
                 style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                     color: CustomColor.secondaryColor,
                     fontSize: 16,
@@ -85,7 +92,7 @@ class AyatList extends StatelessWidget {
                 height: 5,
               ),
               Text(
-                data.ayatTranslation,
+                item.ayatTranslation,
                 style: Theme.of(context)
                     .textTheme
                     .bodySmall!
@@ -97,11 +104,100 @@ class AyatList extends StatelessWidget {
         const SizedBox(
           height: 10,
         ),
-        Container(
-          height: 1,
-          width: Get.width,
-          color: const Color.fromARGB(255, 142, 180, 186),
-        ),
+        GetBuilder<AudioController>(
+            builder: (_) => audioController.isAudio.value
+                ? Container(
+                    decoration: const BoxDecoration(
+                      gradient: LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: [
+                            Color.fromARGB(255, 117, 168, 239),
+                            Color.fromARGB(255, 75, 235, 211),
+                          ]),
+                    ),
+                    child: Material(
+                      color: Colors.transparent,
+                      child: InkWell(
+                        splashColor: Colors.transparent,
+                        overlayColor: const MaterialStatePropertyAll(
+                          Color.fromARGB(112, 117, 168, 239),
+                        ),
+                        onTap: audioController.isPlaying.value
+                            ? () {}
+                            : () async {
+                                await audioController.playAudio(
+                                    item, item.audio);
+                              },
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          height: 40,
+                          width: Get.width,
+                          color: Colors.transparent,
+                          child: audioController.isLoading.value
+                              ? Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      item.isPlaying
+                                          ? "Sebentar ya..."
+                                          : "Audio",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium!
+                                          .copyWith(
+                                              fontSize: 14,
+                                              color: const Color.fromARGB(
+                                                  255, 244, 243, 243)),
+                                    ),
+                                    const SizedBox(
+                                      width: 5,
+                                    ),
+                                    item.isPlaying
+                                        ? const SizedBox.shrink()
+                                        : const Icon(
+                                            Icons.play_arrow,
+                                            color: Color.fromARGB(
+                                                255, 244, 243, 243),
+                                            size: 20,
+                                          ),
+                                  ],
+                                )
+                              : Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      item.isPlaying
+                                          ? "Sedang diputar..."
+                                          : "Audio",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium!
+                                          .copyWith(
+                                              fontSize: 14,
+                                              color: const Color.fromARGB(
+                                                  255, 244, 243, 243)),
+                                    ),
+                                    const SizedBox(
+                                      width: 5,
+                                    ),
+                                    item.isPlaying
+                                        ? const SizedBox.shrink()
+                                        : const Icon(
+                                            Icons.play_arrow,
+                                            color: Color.fromARGB(
+                                                255, 244, 243, 243),
+                                            size: 20,
+                                          ),
+                                  ],
+                                ),
+                        ),
+                      ),
+                    ),
+                  )
+                : const SizedBox.shrink()),
       ],
     );
   }

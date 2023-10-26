@@ -1,27 +1,30 @@
 import 'package:al_quran/model/ayat_al_quran_model.dart';
 import 'package:al_quran/theme/color.dart';
 import 'package:al_quran/util/loading.dart';
+import 'package:al_quran/viewModel/audio/audio_controller.dart';
 import 'package:al_quran/viewModel/ayatFromSurah/ayat_from_surah_controller.dart';
 import 'package:al_quran/widget/global/ayat_list.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../widget/global/audio_play.dart';
+
 class AyatFromSurahView extends StatelessWidget {
-  const AyatFromSurahView(
-      {super.key,
-      required this.surahId,
-      required this.surahName,
-      });
+  const AyatFromSurahView({
+    super.key,
+    required this.surahId,
+    required this.surahName,
+  });
 
   final int surahId;
   final String surahName;
-
 
   @override
   Widget build(BuildContext context) {
     AyatFromSurahController ayatFromSurahController =
         Get.put(AyatFromSurahController(surahId: surahId.obs));
     List<AyatAlQuran> ayatDataList = ayatFromSurahController.ayatDataList;
+    AudioController audioController = Get.find<AudioController>();
     return Obx(() => ayatFromSurahController.isLoading.value
         ? const LoadingUtil()
         : Scaffold(
@@ -43,61 +46,76 @@ class AyatFromSurahView extends StatelessWidget {
                 ),
               ),
             ),
-            body: SingleChildScrollView(
-              physics: const BouncingScrollPhysics(),
-              child: Column(
+            body: SizedBox(
+              height: Get.height,
+              width: Get.width,
+              child: Stack(
                 children: [
-                  surahId == 1 || surahId == 9
-                      ? const SizedBox.shrink()
-                      : Padding(
-                          padding: const EdgeInsets.only(bottom: 10.0),
-                          child: Column(
-                            children: [
-                              Container(
-                                  height: 5,
-                                  width: Get.width,
-                                  decoration: const BoxDecoration(
-                                    gradient: LinearGradient(
-                                        begin: Alignment.topLeft,
-                                        end: Alignment.bottomRight,
-                                        colors: [
-                                          Color.fromARGB(255, 118, 174, 254),
-                                          Color.fromARGB(255, 53, 242, 214),
-                                        ]),
-                                  )),
-                              Container(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 10),
-                                width: Get.width,
-                                color: const Color.fromARGB(255, 176, 249, 219),
-                                child: Center(
-                                  child: Image.asset(
-                                    "assets/bismillah.png",
-                                    width: 250,
-                                  ),
+                  SingleChildScrollView(
+                    physics: const BouncingScrollPhysics(),
+                    child: Column(
+                      children: [
+                        surahId == 1 || surahId == 9
+                            ? const SizedBox.shrink()
+                            : Padding(
+                                padding: const EdgeInsets.only(bottom: 10.0),
+                                child: Column(
+                                  children: [
+                                    Container(
+                                        height: 5,
+                                        width: Get.width,
+                                        decoration: const BoxDecoration(
+                                          gradient: LinearGradient(
+                                              begin: Alignment.topLeft,
+                                              end: Alignment.bottomRight,
+                                              colors: [
+                                                Color.fromARGB(
+                                                    255, 118, 174, 254),
+                                                Color.fromARGB(
+                                                    255, 53, 242, 214),
+                                              ]),
+                                        )),
+                                    Container(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 10),
+                                      width: Get.width,
+                                      color: const Color.fromARGB(
+                                          255, 176, 249, 219),
+                                      child: Center(
+                                        child: Image.asset(
+                                          "assets/bismillah.png",
+                                          width: 250,
+                                        ),
+                                      ),
+                                    ),
+                                    Container(
+                                        height: 3,
+                                        width: Get.width,
+                                        decoration: const BoxDecoration(
+                                          gradient: LinearGradient(
+                                              begin: Alignment.topLeft,
+                                              end: Alignment.bottomRight,
+                                              colors: [
+                                                Color.fromARGB(
+                                                    255, 53, 242, 214),
+                                                Color.fromARGB(
+                                                    255, 118, 174, 254),
+                                              ]),
+                                        )),
+                                  ],
                                 ),
                               ),
-                              Container(
-                                  height: 3,
-                                  width: Get.width,
-                                  decoration: const BoxDecoration(
-                                    gradient: LinearGradient(
-                                        begin: Alignment.topLeft,
-                                        end: Alignment.bottomRight,
-                                        colors: [
-                                          Color.fromARGB(255, 53, 242, 214),
-                                          Color.fromARGB(255, 118, 174, 254),
-                                        ]),
-                                  )),
-                            ],
-                          ),
+                        ListView.builder(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: ayatDataList.length,
+                          itemBuilder: (context, index) =>
+                              AyatList(index: index),
                         ),
-                  ListView.builder(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: ayatDataList.length,
-                    itemBuilder: (context, index) => AyatList(index: index),
+                      ],
+                    ),
                   ),
+                  const AudioPlay()
                 ],
               ),
             ),
