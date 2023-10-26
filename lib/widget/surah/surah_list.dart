@@ -104,7 +104,8 @@ class SurahList extends StatelessWidget {
                           overlayColor: const MaterialStatePropertyAll(
                             Color.fromARGB(112, 117, 168, 239),
                           ),
-                          onTap: audioController.isPlaying.value || audioController.isLoading.value
+                          onTap: audioController.isPlaying.value ||
+                                  audioController.isLoading.value
                               ? () {}
                               : () async {
                                   await audioController.playAudio(item, audio);
@@ -180,6 +181,17 @@ class SurahList extends StatelessWidget {
                       ),
                     )
                   : const SizedBox.shrink()),
+          !audioController.isAudio.value
+              ? Column(
+                  children: [
+                    Container(
+                      height: 1,
+                      width: Get.width,
+                      color: const Color.fromARGB(255, 142, 180, 186),
+                    ),
+                  ],
+                )
+              : const SizedBox.shrink()
         ],
       ),
     );

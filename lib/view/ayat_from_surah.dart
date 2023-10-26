@@ -67,20 +67,6 @@ class AyatFromSurahView extends StatelessWidget {
                                 child: Column(
                                   children: [
                                     Container(
-                                        height: 5,
-                                        width: Get.width,
-                                        decoration: const BoxDecoration(
-                                          gradient: LinearGradient(
-                                              begin: Alignment.topLeft,
-                                              end: Alignment.bottomRight,
-                                              colors: [
-                                                Color.fromARGB(
-                                                    255, 118, 174, 254),
-                                                Color.fromARGB(
-                                                    255, 53, 242, 214),
-                                              ]),
-                                        )),
-                                    Container(
                                       padding: const EdgeInsets.symmetric(
                                           vertical: 10),
                                       width: Get.width,
@@ -94,7 +80,7 @@ class AyatFromSurahView extends StatelessWidget {
                                       ),
                                     ),
                                     Container(
-                                        height: 3,
+                                        height: 2,
                                         width: Get.width,
                                         decoration: const BoxDecoration(
                                           gradient: LinearGradient(

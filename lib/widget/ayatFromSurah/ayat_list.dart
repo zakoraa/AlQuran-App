@@ -9,11 +9,9 @@ class AyatList extends StatelessWidget {
   const AyatList({
     super.key,
     required this.index,
-    this.isAudio = true,
   });
 
   final int index;
-  final bool isAudio;
 
   @override
   Widget build(BuildContext context) {
@@ -199,6 +197,20 @@ class AyatList extends StatelessWidget {
                     ),
                   )
                 : const SizedBox.shrink()),
+        !audioController.isAudio.value
+            ? Column(
+                children: [
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Container(
+                    height: 1,
+                    width: Get.width,
+                    color: const Color.fromARGB(255, 142, 180, 186),
+                  ),
+                ],
+              )
+            : const SizedBox.shrink()
       ],
     );
   }

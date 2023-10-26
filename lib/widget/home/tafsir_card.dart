@@ -19,7 +19,6 @@ class TafsirCard extends StatelessWidget {
             boxShadow: const [
               BoxShadow(
                   blurRadius: 2,
-                  spreadRadius: 1,
                   offset: Offset(0, 3),
                   color: CustomColor.shadowColor)
             ],
