@@ -1,6 +1,7 @@
 import 'package:al_quran/model/ayat_al_quran_model.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:get/get.dart';
+import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 class AudioController extends GetxController {
   final AudioPlayer audioPlayer;
@@ -17,6 +18,8 @@ class AudioController extends GetxController {
   String? audioURL;
   List<AyatAlQuran>? ayatList;
   int index = 1;
+  ItemScrollController itemScrollController = ItemScrollController();
+  ItemPositionsListener itemPositionsListener = ItemPositionsListener.create();
 
   Future<void> playAudio(dynamic item, String audioURL) async {
     isLoading.value = true;
@@ -58,6 +61,25 @@ class AudioController extends GetxController {
     }
   }
 
+  Future<void> scrollToItem() async {
+    final hasPrevious = itemPositionsListener.itemPositions.value
+        .any((item) => item.index == 0);
+    final hasNext = itemPositionsListener.itemPositions.value
+        .any((item) => item.index == ayatList!.length - 1);
+    final isValidPosition = !hasNext || !hasPrevious;
+
+  //  itemScrollController.isAttached kalau auto scroll tampil di layar,
+  //  fungsi dibawah akan dijalankan, agar saat keluar dari halaman
+  //  tidak error
+    if (itemScrollController.isAttached && isValidPosition) {
+      itemScrollController.scrollTo(
+        index: index - 1,
+        duration: const Duration(milliseconds: 300),
+      );
+    }
+    update();
+  }
+
   @override
   void onInit() {
     super.onInit();
@@ -73,6 +95,9 @@ class AudioController extends GetxController {
 
     audioPlayer.onPositionChanged.listen((newPosition) {
       position = newPosition;
+      if (item is AyatAlQuran) {
+        scrollToItem();
+      }
       update();
     });
 
@@ -87,4 +112,5 @@ class AudioController extends GetxController {
       update();
     });
   }
+
 }

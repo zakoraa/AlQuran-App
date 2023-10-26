@@ -68,28 +68,41 @@ class SurahView extends StatelessWidget {
                     const SizedBox(
                       height: 10,
                     ),
-                    Expanded(
-                      child: GetBuilder<SearchSurahController>(
-                        builder: (_) => ListView.builder(
-                            physics: const BouncingScrollPhysics(),
-                            itemCount: itemList.length,
-                            itemBuilder: (context, index) {
-                              SurahAlQuran item = itemList[index];
-                              return GestureDetector(
-                                onTap: () => isTafsir
-                                    ? surahController.showTafsir(
-                                        context,
-                                        item.titleSurahIndonesia,
-                                        item.interpretation)
-                                    : Get.to(
-                                        () => AyatFromSurahView(item: item),
-                                        transition: Transition.rightToLeft),
-                                child: SurahList(
-                                  item: item,
-                                ),
-                              );
-                            }),
-                      ),
+                    GetBuilder<SearchSurahController>(
+                      builder: (_) => itemList.isEmpty
+                          ? Padding(
+                              padding: const EdgeInsets.only(top: 20.0),
+                              child: Text("Tidak ada hasil",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodySmall!
+                                      .copyWith(
+                                          color: const Color.fromARGB(
+                                              255, 173, 172, 172))),
+                            )
+                          : Expanded(
+                              child: ListView.builder(
+                                  physics: const BouncingScrollPhysics(),
+                                  itemCount: itemList.length,
+                                  itemBuilder: (context, index) {
+                                    SurahAlQuran item = itemList[index];
+                                    return GestureDetector(
+                                      onTap: () => isTafsir
+                                          ? surahController.showTafsir(
+                                              context,
+                                              item.titleSurahIndonesia,
+                                              item.interpretation)
+                                          : Get.to(
+                                              () =>
+                                                  AyatFromSurahView(item: item),
+                                              transition:
+                                                  Transition.rightToLeft),
+                                      child: SurahList(
+                                        item: item,
+                                      ),
+                                    );
+                                  }),
+                            ),
                     ),
                   ],
                 ),
