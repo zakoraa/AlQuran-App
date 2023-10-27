@@ -12,9 +12,10 @@ import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import '../widget/global/audio_play.dart';
 
 class AyatFromSurahView extends StatelessWidget {
-  const AyatFromSurahView({super.key, required this.item});
+  const AyatFromSurahView({super.key, required this.item, required this.isTafsir});
 
   final SurahAlQuran item;
+  final bool isTafsir;
 
   @override
   Widget build(BuildContext context) {
@@ -120,7 +121,7 @@ class AyatFromSurahView extends StatelessWidget {
                                             ],
                                           ),
                                         ),
-                                  AyatList(index: index),
+                                  AyatList(index: index, isTafsir: isTafsir),
                                   isAudioPlaying(index)
                                       ? const SizedBox(
                                           height: 100,
@@ -130,7 +131,7 @@ class AyatFromSurahView extends StatelessWidget {
                               )
                             : Column(
                                 children: [
-                                  AyatList(index: index),
+                                  AyatList(index: index, isTafsir: isTafsir),
                                   isAudioPlaying(index)
                                       ? const SizedBox(
                                           height: 100,

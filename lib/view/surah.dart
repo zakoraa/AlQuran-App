@@ -86,21 +86,18 @@ class SurahView extends StatelessWidget {
                                         SurahAlQuran item = surahController
                                             .searchResults![index];
                                         return GestureDetector(
-                                          onTap: () => isTafsir
-                                              ? surahController.showTafsir(
-                                                  context,
-                                                  item.titleSurahIndonesia,
-                                                  item.interpretation)
-                                              : audioController.isShown.value &&
+                                          onTap: () => audioController.isShown.value &&
                                                       isAudio
                                                   ? () {}
                                                   : Get.to(
                                                       () => AyatFromSurahView(
+                                                        isTafsir : isTafsir,
                                                           item: item),
                                                       transition: Transition
                                                           .rightToLeft),
                                           child: SurahList(
                                             item: item,
+                                            isTafsir: isTafsir,
                                           ),
                                         );
                                       }),

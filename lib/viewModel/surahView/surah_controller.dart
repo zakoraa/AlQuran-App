@@ -6,7 +6,6 @@ import '../../util/alert_dialog.dart';
 import '../surahData/surah_data_controller.dart';
 
 class SurahController extends GetxController {
-
   RxList<SurahAlQuran>? searchResults;
   TextEditingController? searchText = TextEditingController();
   RxList<SurahAlQuran> surahDataList = <SurahAlQuran>[].obs;
@@ -33,27 +32,25 @@ class SurahController extends GetxController {
     update();
   }
 
- 
   void onClear() {
     searchText!.clear();
     searchResults!.value = RxList.from(surahDataList);
     update();
   }
 
- 
   @override
-  void onInit() async{
+  void onInit() async {
     await getSurahData();
     searchResults = RxList.from(surahDataList);
     update();
     super.onInit();
   }
 
-  void showTafsir(
-      BuildContext context, String titleSurah, String tafsirContent) {
+  void showTafsir(BuildContext context, dynamic titleSurah,
+      String tafsirContent, String type) {
     AlertDialogUtils.showDialogUtils(context,
         title: Text(
-          "Tafsir Surah $titleSurah",
+          "Tafsir $type $titleSurah",
           style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontSize: 18),
         ),
         content: Text(
@@ -72,8 +69,8 @@ class SurahController extends GetxController {
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
                       colors: [
-                        Color.fromARGB(255, 118, 174, 254),
-                        Color.fromARGB(255, 53, 242, 214),
+                        Color.fromARGB(255, 183, 151, 234),
+                        Color.fromARGB(255, 231, 175, 208),
                       ]),
                   borderRadius: BorderRadius.circular(5)),
               child: Center(

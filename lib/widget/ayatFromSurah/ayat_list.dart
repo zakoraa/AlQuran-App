@@ -1,4 +1,6 @@
 import 'package:al_quran/viewModel/ayatFromSurahView/ayat_from_surah_controller.dart';
+import 'package:al_quran/widget/surah/audio_play_button.dart';
+import 'package:al_quran/widget/surah/tafsir_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../model/ayat_al_quran_model.dart';
@@ -6,12 +8,10 @@ import '../../theme/color.dart';
 import '../../viewModel/audio/audio_controller.dart';
 
 class AyatList extends StatelessWidget {
-  const AyatList({
-    super.key,
-    required this.index,
-  });
+  const AyatList({super.key, required this.index, required this.isTafsir});
 
   final int index;
+  final bool isTafsir;
 
   @override
   Widget build(BuildContext context) {
@@ -100,104 +100,11 @@ class AyatList extends StatelessWidget {
           ),
         ),
         const SizedBox(
-          height: 10,
+          height: 15,
         ),
-        GetBuilder<AudioController>(
-            builder: (_) => audioController.isAudio.value
-                ? Container(
-                    decoration: const BoxDecoration(
-                      gradient: LinearGradient(
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                          colors: [
-                            Color.fromARGB(255, 117, 168, 239),
-                            Color.fromARGB(255, 75, 235, 211),
-                          ]),
-                    ),
-                    child: Material(
-                      color: Colors.transparent,
-                      child: InkWell(
-                        splashColor: Colors.transparent,
-                        overlayColor: const MaterialStatePropertyAll(
-                          Color.fromARGB(112, 117, 168, 239),
-                        ),
-                        onTap: audioController.isPlaying.value ||
-                                audioController.isLoading.value
-                            ? () {}
-                            : () async {
-                                await audioController.playAudio(
-                                    item, item.audio);
-                              },
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 10),
-                          height: 40,
-                          width: Get.width,
-                          color: Colors.transparent,
-                          child: audioController.isLoading.value
-                              ? Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      item.isPlaying
-                                          ? "Sebentar ya..."
-                                          : "Audio",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyMedium!
-                                          .copyWith(
-                                              fontSize: 14,
-                                              color: const Color.fromARGB(
-                                                  255, 244, 243, 243)),
-                                    ),
-                                    const SizedBox(
-                                      width: 5,
-                                    ),
-                                    item.isPlaying
-                                        ? const SizedBox.shrink()
-                                        : const Icon(
-                                            Icons.play_arrow,
-                                            color: Color.fromARGB(
-                                                255, 244, 243, 243),
-                                            size: 20,
-                                          ),
-                                  ],
-                                )
-                              : Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      item.isPlaying
-                                          ? "Sedang diputar..."
-                                          : "Audio",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyMedium!
-                                          .copyWith(
-                                              fontSize: 14,
-                                              color: const Color.fromARGB(
-                                                  255, 244, 243, 243)),
-                                    ),
-                                    const SizedBox(
-                                      width: 5,
-                                    ),
-                                    item.isPlaying
-                                        ? const SizedBox.shrink()
-                                        : const Icon(
-                                            Icons.play_arrow,
-                                            color: Color.fromARGB(
-                                                255, 244, 243, 243),
-                                            size: 20,
-                                          ),
-                                  ],
-                                ),
-                        ),
-                      ),
-                    ),
-                  )
-                : const SizedBox.shrink()),
-        !audioController.isAudio.value
+        isTafsir ? TafsirButton(item: item) : const SizedBox.shrink(),
+        AudioPlayButton(item: item, audio: item.audio),
+        !audioController.isAudio.value && !isTafsir
             ? Column(
                 children: [
                   const SizedBox(
