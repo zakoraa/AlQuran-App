@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import '../../model/surah_al_quran_model.dart';
 import '../../repository/surah_al_quran_service.dart';
 
-class SurahAlQuranController extends GetxController {
+class SurahDataController extends GetxController {
   Future<List<SurahAlQuran>> getSurah() async {
     try {
       final data = await SurahAlQuranService().getSurah();

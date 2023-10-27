@@ -8,7 +8,6 @@ import 'package:get/get.dart';
 import '../theme/color.dart';
 import '../util/background_app.dart';
 import '../viewModel/audio/audio_controller.dart';
-import '../viewModel/home/home_controller.dart';
 import '../widget/global/audio_play.dart';
 import '../widget/home/al_quran_with_audio.dart';
 
@@ -17,7 +16,6 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    HomeController homeController = Get.find<HomeController>();
     AudioPlayer audioPlayer = AudioPlayer();
     AudioController audioController =
         Get.put(AudioController(audioPlayer: audioPlayer));

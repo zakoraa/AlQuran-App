@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 
 import '../../model/ayat_al_quran_model.dart';
-import '../ayatAlQuran/ayat_al_quran_controller.dart';
+import '../ayatData/ayat_data_controller.dart';
 
 class AyatFromSurahController extends GetxController {
   RxList<AyatAlQuran> ayatDataList = <AyatAlQuran>[].obs;
@@ -12,7 +12,7 @@ class AyatFromSurahController extends GetxController {
       {required this.surahId});
 
   Future<void> getAyatData(int surahId) async {
-    final ayatData = await AyatAlQuranController().getAyatAlQuran(surahId);
+    final ayatData = await AyatDataController().getAyatAlQuran(surahId);
     if (ayatData.isNotEmpty) {
       ayatDataList.value = List.from(ayatData);
     }

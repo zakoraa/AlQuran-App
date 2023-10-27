@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 
 import '../../repository/ayat_al_quran_service.dart';
 
-class AyatAlQuranController extends GetxController {
+class AyatDataController extends GetxController {
   Future<dynamic> getAyatAlQuran(int surahId) async {
     try {
       final data = await AyatAlQuranService().getAyat(surahId);

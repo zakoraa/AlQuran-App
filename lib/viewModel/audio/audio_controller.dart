@@ -68,9 +68,9 @@ class AudioController extends GetxController {
         .any((item) => item.index == ayatList!.length - 1);
     final isValidPosition = !hasNext || !hasPrevious;
 
-  //  itemScrollController.isAttached kalau auto scroll tampil di layar,
-  //  fungsi dibawah akan dijalankan, agar saat keluar dari halaman
-  //  tidak error
+    //  itemScrollController.isAttached kalau auto scroll tampil di layar,
+    //  fungsi dibawah akan dijalankan, agar saat keluar dari halaman
+    //  tidak error
     if (itemScrollController.isAttached && isValidPosition) {
       itemScrollController.scrollTo(
         index: index - 1,
@@ -112,5 +112,4 @@ class AudioController extends GetxController {
       update();
     });
   }
-
 }

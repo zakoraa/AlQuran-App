@@ -3,7 +3,7 @@ import 'package:al_quran/model/surah_al_quran_model.dart';
 import 'package:al_quran/theme/color.dart';
 import 'package:al_quran/util/loading.dart';
 import 'package:al_quran/viewModel/audio/audio_controller.dart';
-import 'package:al_quran/viewModel/ayatFromSurah/ayat_from_surah_controller.dart';
+import 'package:al_quran/viewModel/ayatFromSurahView/ayat_from_surah_controller.dart';
 import 'package:al_quran/widget/ayatFromSurah/ayat_list.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
