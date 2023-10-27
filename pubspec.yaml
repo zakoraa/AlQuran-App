@@ -38,6 +38,18 @@ dependencies:
   lottie: ^2.7.0
   audioplayers: ^5.2.0
   scrollable_positioned_list: ^0.3.8
+  flutter_native_splash: ^2.3.4
+
+flutter_native_splash:
+  android: true
+  ios: true
+  web: false
+  image: assets/splash_screen_logo.png
+  color: "#3CEDA0"
+
+  android_12:
+    image: assets/splash_screen_logo.png
+    icon_background_color: "#3CEDA0"
 
 dev_dependencies:
   flutter_test:

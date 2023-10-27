@@ -1,6 +1,4 @@
 // ignore_for_file: unused_local_variable
-
-import 'package:al_quran/util/loading.dart';
 import 'package:al_quran/widget/home/header.dart';
 import 'package:al_quran/widget/home/al_quran_card.dart';
 import 'package:al_quran/widget/home/tafsir_card.dart';
@@ -19,13 +17,11 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    HomeController homeController = Get.put(HomeController());
+    HomeController homeController = Get.find<HomeController>();
     AudioPlayer audioPlayer = AudioPlayer();
     AudioController audioController =
         Get.put(AudioController(audioPlayer: audioPlayer));
-    return Obx(() => homeController.isLoading.value
-        ? const Scaffold(body: LoadingUtil())
-        : Scaffold(
+    return Scaffold(
             appBar: AppBar(
               title: Text(
                 "AL QUR'AN",
@@ -92,6 +88,6 @@ class HomeView extends StatelessWidget {
                 const AudioPlay()
               ]),
             ),
-          ));
+          );
   }
 }
