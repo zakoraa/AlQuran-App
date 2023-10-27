@@ -20,7 +20,8 @@ class SurahView extends StatelessWidget {
   Widget build(BuildContext context) {
     AudioController audioController = Get.find<AudioController>();
     audioController.isAudio.value = isAudio;
-    SurahController surahController = Get.put(SurahController());
+    SurahController surahController =
+        Get.put(SurahController(), permanent: true);
     return Obx(() => surahController.isLoading.value
         ? const LoadingUtil()
         : Scaffold(
@@ -90,11 +91,14 @@ class SurahView extends StatelessWidget {
                                                   context,
                                                   item.titleSurahIndonesia,
                                                   item.interpretation)
-                                              : Get.to(
-                                                  () => AyatFromSurahView(
-                                                      item: item),
-                                                  transition:
-                                                      Transition.rightToLeft),
+                                              : audioController.isShown.value &&
+                                                      isAudio
+                                                  ? () {}
+                                                  : Get.to(
+                                                      () => AyatFromSurahView(
+                                                          item: item),
+                                                      transition: Transition
+                                                          .rightToLeft),
                                           child: SurahList(
                                             item: item,
                                           ),

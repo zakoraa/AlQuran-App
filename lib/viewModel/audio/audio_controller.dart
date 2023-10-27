@@ -80,6 +80,13 @@ class AudioController extends GetxController {
     update();
   }
 
+  void stopPlaying() {
+    isShown.value = false;
+    isPlaying.value = false;
+    item.isPlaying = false;
+    isLoading.value = false;
+  }
+
   @override
   void onInit() {
     super.onInit();
@@ -102,10 +109,7 @@ class AudioController extends GetxController {
     });
 
     audioPlayer.onPlayerComplete.listen((event) async {
-      isShown.value = false;
-      isPlaying.value = false;
-      item.isPlaying = false;
-      isLoading.value = false;
+      stopPlaying();
       if (item is AyatAlQuran) {
         await playNextAudio();
       }

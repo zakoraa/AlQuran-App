@@ -4,6 +4,7 @@ class AyatAlQuran {
   String arabicAyat;
   String latinAyat;
   String ayatTranslation;
+  String interpretation;
   dynamic audio;
   bool isPlaying;
 
@@ -13,6 +14,7 @@ class AyatAlQuran {
     required this.arabicAyat,
     required this.latinAyat,
     required this.ayatTranslation,
+    required this.interpretation,
     required this.audio,
     required this.isPlaying,
   });
@@ -24,6 +26,7 @@ class AyatAlQuran {
         arabicAyat: json["text"]["ar"],
         latinAyat: json["text"]["read"]["id"],
         ayatTranslation: json["translation"]["id"],
+        interpretation: json["tafsir"]["id"],
         audio: json["audio"]["url"],
         isPlaying: false);
   }
