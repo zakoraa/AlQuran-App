@@ -5,6 +5,12 @@ An Al Qur'an App with audio and tafsir for each surahs and verses of Al Qur'an.
 # Architecture
 The architecture used is MVVM, where state management uses Getx. GetX is an extra-light and powerful solution for Flutter. It combines high-performance state management, intelligent dependency injection, and route management quickly and practically.
 
+<b>- Installation Getx</b>
+
+Run this command : 
+
+``` $ flutter pub add get ```
+
 # Folder Structure :
 ```
 model      : the core data flow in architecture
@@ -41,4 +47,8 @@ await player.play(UrlSource('https://example.com/my-audio.wav'));
 ```
 
 # Screenshots
+
+<img src= "https://github.com/zakoraa/AlQuran-App/assets/129678009/17ea56d5-e0da-4f70-8e38-9ed676073aba"  height = "450" width = "215"/>
+<img src= "https://github.com/zakoraa/AlQuran-App/assets/129678009/37b98d7d-3829-4fe9-85bd-3799407570b2"  height = "450" width = "210"/>
+<img src= "https://github.com/zakoraa/AlQuran-App/assets/129678009/b791f3c0-7a8b-491a-a86c-4a26bb94cddc"  height = "450" width = "210"/>
 
