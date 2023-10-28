@@ -45,11 +45,13 @@ flutter_native_splash:
   ios: true
   web: false
   image: assets/splash_screen_logo.png
-  color: "#3CEDA0"
+  color: "#b4ffdf"
 
   android_12:
     image: assets/splash_screen_logo.png
-    icon_background_color: "#3CEDA0"
+    icon_background_color: "#b4ffdf"
+
+# flutter pub run flutter_native_splash:create
 
 dev_dependencies:
   flutter_test:

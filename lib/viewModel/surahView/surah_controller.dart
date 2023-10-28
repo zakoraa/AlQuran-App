@@ -10,13 +10,15 @@ class SurahController extends GetxController {
   TextEditingController? searchText = TextEditingController();
   RxList<SurahAlQuran> surahDataList = <SurahAlQuran>[].obs;
   RxBool isLoading = true.obs;
+  RxBool isSuccess = false.obs;
 
   Future<void> getSurahData() async {
-    final surahData = await SurahDataController().getSurah();
-    if (surahData.isNotEmpty) {
-      surahDataList.value = List.from(surahData);
-    }
-    isLoading.value = false;
+      final surahData = await SurahDataController().getSurah();
+      if (surahData.isNotEmpty) {
+        surahDataList.value = List.from(surahData);
+        isSuccess.value = true;
+      }
+      isLoading.value = false;
   }
 
   void onSearch(String text) {

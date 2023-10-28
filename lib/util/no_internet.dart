@@ -30,9 +30,50 @@ class NoInternetUtil extends StatelessWidget {
                 ),
                 Text(
                   "Tidak ada koneksi",
-                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                      color: CustomColor.textsecondaryColor, fontSize: 18),
-                )
+                  style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                      color: CustomColor.textsecondaryColor, fontSize: 16),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Container(
+                    width: 200,
+                    decoration: BoxDecoration(
+                        gradient: const LinearGradient(
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                            colors: [
+                              Color.fromARGB(255, 117, 168, 239),
+                              Color.fromARGB(255, 75, 235, 211),
+                            ]),
+                        borderRadius: BorderRadius.circular(5)),
+                    child: Material(
+                        borderRadius: BorderRadius.circular(5),
+                        color: Colors.transparent,
+                        child: InkWell(
+                            splashColor: Colors.transparent,
+                            overlayColor: const MaterialStatePropertyAll(
+                              Color.fromARGB(112, 117, 168, 239),
+                            ),
+                            onTap: () => Get.back(),
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 10, vertical: 10),
+                              color: Colors.transparent,
+                              child: Center(
+                                child: Text(
+                                  "Kembali",
+                                  textAlign: TextAlign.center,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium!
+                                      .copyWith(
+                                          fontSize: 14,
+                                          color: const Color.fromARGB(
+                                              255, 244, 243, 243)),
+                                ),
+                              ),
+                            ))))
               ],
             ),
           ],

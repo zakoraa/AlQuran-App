@@ -1,4 +1,5 @@
 import 'package:al_quran/model/ayat_al_quran_model.dart';
+import 'package:al_quran/util/snack_bar.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:get/get.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
@@ -46,7 +47,13 @@ class AudioController extends GetxController {
       } else {
         index = item.surahId;
       }
-      await audioPlayer.play(UrlSource(audioURL));
+      try {
+        await audioPlayer.play(UrlSource(audioURL));
+      } catch (e) {
+        stopPlaying();
+        SnackBarUtil.showSnackBarUtil("Gagal memutar audio, Coba lagi!", 3000);
+      }
+
       isLoading.value = false;
     } else {
       await audioPlayer.pause();
