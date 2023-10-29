@@ -1,6 +1,6 @@
 # Al Qur'an App
 
-An Al Qur'an App with audio and tafsir for each surahs and verses of Al Qur'an.
+An Al Qur'an App with audio and interpretation for each surahs and verses of Al Qur'an.
 
 # Architecture
 The architecture used is MVVM, where state management uses Getx. GetX is an extra-light and powerful solution for Flutter. It combines high-performance state management, intelligent dependency injection, and route management quickly and practically.
