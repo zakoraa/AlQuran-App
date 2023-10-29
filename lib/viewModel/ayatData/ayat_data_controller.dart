@@ -25,10 +25,3 @@ class AyatDataController extends GetxController {
     }
   }
 }
-
-     // print("""
-      //   ayatNumber: ${data["data"]["ayahs"][0]["number"]["insurah"]},
-      //   arabicAyat: ${data["data"]["ayahs"][0]["text"]["ar"]},
-      //   latinAyat: ${data["data"]["ayahs"][0]["text"]["read"]["id"]},
-      //   ayatTranslation: ${data["data"]["ayahs"][0]["translation"]["id"]},
-      //   audio: ${data["data"]["ayahs"][0]["audio"]["url"]}""");

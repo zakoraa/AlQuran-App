@@ -19,8 +19,8 @@ class AudioController extends GetxController {
   String? audioURL;
   List<AyatAlQuran>? ayatList;
   int index = 1;
-  ItemScrollController itemScrollController = ItemScrollController();
-  ItemPositionsListener itemPositionsListener = ItemPositionsListener.create();
+  late ItemScrollController itemScrollController;
+  late ItemPositionsListener itemPositionsListener;
 
   Future<void> playAudio(dynamic item, String audioURL) async {
     isLoading.value = true;
@@ -96,7 +96,9 @@ class AudioController extends GetxController {
 
   @override
   void onInit() {
-    super.onInit();
+    itemScrollController = ItemScrollController();
+    itemPositionsListener = ItemPositionsListener.create();
+    
     audioPlayer.onPlayerStateChanged.listen((event) {
       isPlaying.value = event == PlayerState.playing;
       update();
@@ -122,5 +124,8 @@ class AudioController extends GetxController {
       }
       update();
     });
+    super.onInit();
   }
+
 }
+

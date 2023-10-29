@@ -7,45 +7,52 @@ import '../surahData/surah_data_controller.dart';
 
 class SurahController extends GetxController {
   RxList<SurahAlQuran>? searchResults;
-  TextEditingController? searchText = TextEditingController();
+  late TextEditingController searchText;
   RxList<SurahAlQuran> surahDataList = <SurahAlQuran>[].obs;
   RxBool isLoading = true.obs;
   RxBool isSuccess = false.obs;
 
   Future<void> getSurahData() async {
-      final surahData = await SurahDataController().getSurah();
-      if (surahData.isNotEmpty) {
-        surahDataList.value = List.from(surahData);
-        isSuccess.value = true;
-      }
-      isLoading.value = false;
+    final surahData = await SurahDataController().getSurah();
+    if (surahData.isNotEmpty) {
+      surahDataList.value = List.from(surahData);
+      isSuccess.value = true;
+    }
+    isLoading.value = false;
   }
 
   void onSearch(String text) {
-    searchText!.text = text;
+    searchText.text = text;
     searchResults!.value = surahDataList
         .where((element) => element.titleSurahIndonesia
             .split("-")
             .join(" ")
             .toLowerCase()
-            .contains(searchText!.text.toLowerCase()))
+            .contains(searchText.text.toLowerCase()))
         .toList()
         .obs;
     update();
   }
 
   void onClear() {
-    searchText!.clear();
+    searchText.clear();
     searchResults!.value = RxList.from(surahDataList);
     update();
   }
 
   @override
   void onInit() async {
+    searchText = TextEditingController();
     await getSurahData();
     searchResults = RxList.from(surahDataList);
     update();
     super.onInit();
+  }
+
+  @override
+  void onClose() {
+    searchText.dispose();
+    super.onClose();
   }
 
   void showTafsir(BuildContext context, dynamic titleSurah,
