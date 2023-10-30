@@ -34,16 +34,4 @@ class AyatAlQuran {
   static List<AyatAlQuran> ayatAlQuranFromSnapshot(List snapshot) {
     return snapshot.map((data) => AyatAlQuran.fromJson(data)).toList();
   }
-
-  @override
-  String toString() {
-    return """Ayat
-        {
-          ayatNumber : $ayatNumber,
-          arabicAyat: $arabicAyat, 
-          latinAyat: $latinAyat, 
-          ayatTranslation: $ayatTranslation, 
-          audio: $audio
-        }""";
-  }
 }

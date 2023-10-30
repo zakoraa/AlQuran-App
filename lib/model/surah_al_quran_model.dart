@@ -35,18 +35,4 @@ class SurahAlQuran {
   static List<SurahAlQuran> surahAlQuranFromSnapshot(List snapshot) {
     return snapshot.map((data) => SurahAlQuran.fromJson(data)).toList();
   }
-
-  @override
-  String toString() {
-    return """SurahAlQuran
-      {
-        titleSurahArabic: $titleSurahArabic, 
-        titleSurahIndonesia: $titleSurahIndonesia, 
-        surah: $surahId, 
-        numberOfAyat: $numberOfAyat, 
-        placeOfRevelation: $placeOfRevelation, 
-        interpretation: $interpretation, 
-        audio: $audio
-      }""";
-  }
 }

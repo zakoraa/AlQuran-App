@@ -6,7 +6,7 @@ import 'util/scroll_behavior.dart';
 import 'view/home.dart';
 
 
-Future<void> main() async {
+void main()  {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
