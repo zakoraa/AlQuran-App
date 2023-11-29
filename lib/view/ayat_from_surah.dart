@@ -106,28 +106,11 @@ class AyatFromSurahView extends StatelessWidget {
                                                     ),
                                                   ),
                                                   Container(
-                                                      height: 2,
-                                                      width: Get.width,
-                                                      decoration:
-                                                          const BoxDecoration(
-                                                        gradient: LinearGradient(
-                                                            begin: Alignment
-                                                                .topLeft,
-                                                            end: Alignment
-                                                                .bottomRight,
-                                                            colors: [
-                                                              Color.fromARGB(
-                                                                  255,
-                                                                  53,
-                                                                  242,
-                                                                  214),
-                                                              Color.fromARGB(
-                                                                  255,
-                                                                  118,
-                                                                  174,
-                                                                  254),
-                                                            ]),
-                                                      )),
+                                                    height: 1,
+                                                    width: Get.width,
+                                                    color: const Color.fromARGB(
+                                                        255, 142, 180, 186),
+                                                  ),
                                                 ],
                                               ),
                                             ),
