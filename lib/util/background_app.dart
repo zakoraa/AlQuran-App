@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
 import '../theme/color.dart';
 
 class BackgroundApp extends StatelessWidget {
@@ -9,8 +7,8 @@ class BackgroundApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: Get.height,
-      width: Get.width,
+      height: MediaQuery.of(context).size.height,
+      width: double.infinity,
       decoration: const BoxDecoration(
           gradient: LinearGradient(
               begin: Alignment.topCenter,

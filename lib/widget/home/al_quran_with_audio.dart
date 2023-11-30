@@ -14,7 +14,6 @@ class AlQuranWithAudioCard extends StatelessWidget {
           transition: Transition.rightToLeft),
       child: Container(
         height: 150,
-        width: Get.width,
         decoration: const BoxDecoration(
             borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(40),

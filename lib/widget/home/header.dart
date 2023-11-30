@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../theme/color.dart';
@@ -12,7 +11,6 @@ class HomeHeader extends StatelessWidget {
     return Container(
       height: 200,
       padding: const EdgeInsets.only(top: 20, bottom: 20, left: 30),
-      width: Get.width,
       decoration: const BoxDecoration(
           borderRadius: BorderRadius.only(
               topLeft: Radius.circular(40),
